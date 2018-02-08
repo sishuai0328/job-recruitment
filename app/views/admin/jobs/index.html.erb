@@ -1,3 +1,4 @@
+<!-- ===新增职位=== -->
 <div class="pull-right">
   <%= link_to("Add a job", new_admin_job_path, :class => "btn btn-default") %>
 </div>
@@ -8,12 +9,15 @@
   <% @jobs.each do |job| %>
   <tr>
     <td>
+      <!-- ===判断职位公开／隐匿状态=== -->
       <%= render_job_status(job) %>
       <%= link_to(job.title, admin_jobs_path(job)) %>
     </td>
     <td>
+      <!-- ===删除和修改=== -->
       <%= link_to("Edit", edit_admin_job_path(job)) %>
       <%= link_to("Destroy", admin_jobs_path(job), :method => :delete, :data => { :confirm => "Are you sure?"}) %>
+      <!-- ===公开和隐藏职位=== -->
       <% if job.is_hidden %>
 
         <%= link_to("Publish", publish_admin_job_path(job) , :method => :post, :class => "btn btn-xs btn-default") %>

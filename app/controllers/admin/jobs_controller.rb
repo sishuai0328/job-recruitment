@@ -1,6 +1,9 @@
 class Admin::JobsController < ApplicationController
+  # 需要登录的操作
   before_action :authenticate_user!, only: [:new, :create, :update, :edit, :destroy]
+  # 需要admin权限
   before_action :require_is_admin
+  # 套用管理界面样式
   layout "admin"
 
   def show

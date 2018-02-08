@@ -1,4 +1,5 @@
 class JobsController < ApplicationController
+  # 需要登录的操作
   before_action :authenticate_user!, only: [:new, :create, :update, :edit, :destroy]
 
   def show
@@ -6,7 +7,17 @@ class JobsController < ApplicationController
   end
 
   def index
-    @jobs = Job.where(:is_hidden => false).order("created_at DESC")
+    @jobs = case params[:order]
+            # 薪资下限
+            when 'by_lower_bound'
+              Job.published.order('wage_lower_bound DESC')
+            # 薪资上限
+            when 'by_upper_bound'
+              Job.published.order('wage_upper_bound DESC')
+            # 创建时间
+            else
+              Job.published.recent
+            end
   end
 
   def new
@@ -44,6 +55,7 @@ class JobsController < ApplicationController
     redirect_to jobs_path
   end
 
+  # 隐藏／显示职位提示
   def show
     @job = Job.find(params[:id])
 
@@ -52,7 +64,7 @@ class JobsController < ApplicationController
       redirect_to root_path
     end
   end
-  
+
 
   private
 

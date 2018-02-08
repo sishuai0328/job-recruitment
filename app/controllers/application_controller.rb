@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  # 管理员权限
   def require_is_admin
     if !current_user.admin?
       flash[:alert] = 'You are not admin'

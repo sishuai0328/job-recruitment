@@ -34,10 +34,20 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+# bootstrap框架
 gem 'bootstrap-sass'
+
+# 登录系统
 gem 'devise'
+
+# bootstrap简化表单
 gem 'simple_form'
+
+# 数据库表格显示套件
 gem 'hirb-unicode'
+
+# 图标组件
 gem 'font-awesome-rails'
 
 
