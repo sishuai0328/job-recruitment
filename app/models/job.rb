@@ -10,6 +10,8 @@ class Job < ApplicationRecord
   # 重构重复代码／最近排序
   scope :recent, -> { order('created_at DESC') }
 
+  has_many :resumes
+
 
   # 公开职位
   def publish!
