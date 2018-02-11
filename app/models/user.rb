@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :resumes
   has_many :groups
+  has_many :posts
 
   def admin?
     is_admin

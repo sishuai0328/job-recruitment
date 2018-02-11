@@ -53,6 +53,9 @@ gem 'font-awesome-rails'
 # 简历上传功能
 gem 'carrierwave'
 
+# 分页功能
+gem 'will_paginate'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

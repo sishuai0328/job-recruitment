@@ -16,7 +16,9 @@ Rails.application.routes.draw do
     resources :resumes
   end
 
-  resources :groups
+  resources :groups do
+    resources :posts
+  end
 
   root 'welcome#index'
 end

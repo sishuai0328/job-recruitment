@@ -6,8 +6,9 @@ class GroupsController < ApplicationController
     @groups = Group.all
   end
 
-    def show
+  def show
     @group = Group.find(params[:id])
+    @posts = @group.posts.recent.paginate(:page => params[:page], :per_page => 5)
   end
 
 
