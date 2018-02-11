@@ -22,4 +22,14 @@ class User < ApplicationRecord
     participated_groups.include?(group)
   end
 
+  # 加入群组
+  def join!(group)
+    participated_groups << group
+  end
+
+  # 退出群组
+  def quit!(group)
+    participated_groups.delete(group)
+  end
+
 end
