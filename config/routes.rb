@@ -16,6 +16,10 @@ Rails.application.routes.draw do
     resources :resumes
   end
 
+  namespace :account do
+    resources :groups
+  end
+
   resources :groups do
     member do
       post :join

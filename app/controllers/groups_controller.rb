@@ -21,6 +21,8 @@ class GroupsController < ApplicationController
     @group.user = current_user
 
     if @group.save
+      # 创建之后自动加入
+      current_user.join!(@group)
       redirect_to groups_path
     else
       render :new
