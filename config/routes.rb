@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   end
 
   namespace :account do
-    resources :groups
+    resources :groups do
+      resources :posts
+    end
     resources :posts
   end
 
@@ -28,6 +30,7 @@ Rails.application.routes.draw do
     end
     resources :posts
   end
+
 
   root 'welcome#index'
 end

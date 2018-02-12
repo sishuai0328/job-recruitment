@@ -7,9 +7,10 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+  # 检索相关文章并显示，本质是posts和groups数据库映射
   def show
-    @group = Group.find(params[:id])
-    @posts = @group.posts
+    @post = Post.find(params[:group_id])
+    @group = @post.group
   end
 
   def edit
