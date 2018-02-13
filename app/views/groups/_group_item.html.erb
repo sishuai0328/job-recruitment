@@ -1,0 +1,6 @@
+<tr>
+  <td></td>
+  <td><%= link_to(group.title, group_path(group)) %></td>
+  <td><%= render_group_description(group) %></td>
+  <td> <%= group.user.email %> </td>
+</tr>
