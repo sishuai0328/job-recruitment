@@ -12,6 +12,10 @@ class Job < ApplicationRecord
 
   has_many :resumes
 
+  # 收藏职位
+  has_many :job_favorites
+  has_many :collectors, through: :job_favorites, source: :user
+
 
   # 公开职位
   def publish!

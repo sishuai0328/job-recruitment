@@ -11,11 +11,21 @@ Rails.application.routes.draw do
     end
   end
 
-
+  # 收藏／取消收藏工作
   resources :jobs do
+    member do
+      post :favorites #因与下面的favorite同名，出现routes错误，此处改名处理
+      post :unfavorite
+    end
     resources :resumes
   end
 
+  # 我收藏的工作
+  namespace :favorite do #此处即为上面所说变量重名的问题
+    resources :jobs
+  end
+
+  # 我的讨论组和我的文章
   namespace :account do
     resources :groups do
       resources :posts
