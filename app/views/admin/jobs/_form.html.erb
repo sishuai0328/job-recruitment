@@ -1,0 +1,14 @@
+<%= simple_form_for [:admin,@job] do |f| %>
+
+<%= f.input :title %>
+<%= f.input :description %>
+<hr />
+<%= f.input :category_id, :label => "职位类型", :collection => @categorys, :checked => @job.category %>
+<%= f.input :wage_lower_bound, :label => "薪资下限" %>
+<%= f.input :wage_upper_bound, :label => "薪资上限" %>
+<%= f.input :contact_email %>
+<%= f.input :is_hidden, label: '隐藏职位' %>
+
+
+  <%= f.submit "Submit" %>
+<% end %>

@@ -12,10 +12,12 @@ class Admin::JobsController < ApplicationController
 
   def index
     @jobs = Job.all
+    @categorys = Category.all
   end
 
   def new
     @job = Job.new
+    @categorys = Category.all
   end
 
   def create
@@ -30,6 +32,7 @@ class Admin::JobsController < ApplicationController
 
   def edit
     @job = Job.find(params[:id])
+    @categorys = Category.all
   end
 
   def update
@@ -68,6 +71,6 @@ class Admin::JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:title, :description, :wage_upper_bound, :wage_lower_bound, :contact_email, :is_hidden)
+    params.require(:job).permit(:title, :description, :category_id, :wage_upper_bound, :wage_lower_bound, :contact_email, :is_hidden)
   end
 end

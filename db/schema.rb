@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180213022640) do
+ActiveRecord::Schema.define(version: 20180221031858) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.string   "icon"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "group_relationships", force: :cascade do |t|
     t.integer  "group_id"
@@ -43,6 +50,7 @@ ActiveRecord::Schema.define(version: 20180213022640) do
     t.integer  "wage_lower_bound"
     t.string   "contact_email"
     t.boolean  "is_hidden",        default: true
+    t.integer  "category_id"
   end
 
   create_table "posts", force: :cascade do |t|

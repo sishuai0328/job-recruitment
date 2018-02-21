@@ -2,5 +2,5 @@
 
 <p>
   <%= simple_format(@job.description) %>
-
+  <span><span class="<%= @job.category.icon %>"> <%= @job.category.name %></span>  
 </p>

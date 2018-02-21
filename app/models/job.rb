@@ -16,6 +16,9 @@ class Job < ApplicationRecord
   has_many :job_favorites
   has_many :collectors, through: :job_favorites, source: :user
 
+  # 职位类别
+  belongs_to :category
+
 
   # 公开职位
   def publish!

@@ -1,0 +1,7 @@
+<%= simple_form_for [:admin,@category] do |f| %>
+
+<%= f.input :name, :label => false, placeholder: '请输入职位类型' %>
+<%= f.input :icon, :label => false, placeholder: '请输入ICON代码（例如：fa fa-laptop）' %>
+
+  <%= f.submit "Submit" %>
+<% end %>
