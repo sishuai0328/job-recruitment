@@ -56,6 +56,8 @@ gem 'carrierwave'
 # 分页功能
 gem 'will_paginate'
 
+gem 'font-awesome-sass', '~> 5.0.6'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

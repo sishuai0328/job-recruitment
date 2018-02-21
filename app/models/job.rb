@@ -19,6 +19,8 @@ class Job < ApplicationRecord
   # 职位类别
   belongs_to :category
 
+  # 工作地点
+  belongs_to :location
 
   # 公开职位
   def publish!

@@ -1,0 +1,6 @@
+<%= simple_form_for [:admin,@location] do |f| %>
+
+<%= f.input :name, :label => false, placeholder: '请输入工作地点' %>
+
+  <%= f.submit "Submit" %>
+<% end %>

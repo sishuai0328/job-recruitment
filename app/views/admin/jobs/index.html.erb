@@ -23,6 +23,9 @@
                 薪资上限
             </td>
             <td>
+                简历/收藏
+            </td>
+            <td>
                 管理选项
             </td>
             <td>
@@ -43,6 +46,9 @@
         <td> <%= link_to(job.resumes.count, admin_job_resumes_path(job)) %> </td>
         <td> <%= job.wage_lower_bound %> </td>
         <td> <%= job.wage_upper_bound %> </td>
+        <td>
+          <span class="text-align:center"><%= job.resumes.count %>/<%= job.job_favorites.count %></span>
+        </td>
         <td>
             <!-- ===删除和修改=== -->
             <%= link_to("Edit", edit_admin_job_path(job), :class => "btn btn-xs btn-info") %>

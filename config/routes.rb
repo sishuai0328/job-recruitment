@@ -9,7 +9,10 @@ Rails.application.routes.draw do
       end
       resources :resumes
     end
-    resources :categories
+    resources :categories do
+
+    end
+    resources :locations
   end
 
   # 收藏／取消收藏工作
