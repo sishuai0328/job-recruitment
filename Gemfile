@@ -62,6 +62,10 @@ gem 'font-awesome-sass', '~> 5.0.6'
 # 搜索功能
 gem 'ransack'
 
+# markdown解析与渲染
+gem 'redcarpet'
+gem 'rouge'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

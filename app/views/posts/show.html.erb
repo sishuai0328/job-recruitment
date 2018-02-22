@@ -1,6 +1,17 @@
+<div class="post-container">
+  <h1> <%= @post.title %> </h1>
+
+  <p>
+    <div class="markdown">
+      <%= markdown(@post.content) %>
+    </div>
+  </p>
+</div>
+
+
+<!--
 <h1> <%= @post.title %> </h1>
 
 <p>
   <%= simple_format(@post.content) %>
-
-</p>
+</p> -->
