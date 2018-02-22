@@ -1,0 +1,31 @@
+<div id="search-page" class="container-fluid jobs-show-page col-md-12 col-xs-12">
+    <br>
+    <div class="tips col-md-2 col-xs-2 ">
+      <p style="font-size:20px;"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;搜索结果:</p>
+    </div>
+    <div class="pull-right">
+      <%= link_to(content_tag(:i, " 查看全部职位 ", class: "fa fa-reply-all"), jobs_path) %> |
+      <%= link_to(content_tag(:i, " 返回上一层", class: "fa fa-arrow-left"), url_for(:back)) %>
+    </div>
+    <br>
+    <hr>
+    <div class="job-result col-md-12 col-xs-12 col-centered">
+    <% if @jobs.blank?%>
+      <div class="no-find col-md-6 col-xs-6 col-centered">
+        <p style="color:#f44336;font-size:28px;">没有搜索到关于“<span style="color:#212121;"><%= @query_string %></span>”结果.</p>
+      </div>
+    <% else %>
+      <div class="find-job col-md-10 col-xs-10 col-centered">
+          <div class="find col-md-12 col-xs-12 col-centered">
+            <h3 style="color:#212121;font-size:28px;text-align:center;">
+              搜索到&nbsp;<span style="color:#03A9F4;font-size:30px;"><%= @jobs.count %></span>&nbsp;个关于&nbsp;“<span style="color:#FF5722;"><%= @query_string %></span>”&nbsp;工作</h3>
+          </div>
+
+          <div class="job-list col-md-12 col-xs-12 col-centered ">
+            <%= render :partial => "form", :collection => @jobs, :as => :job %>
+          </div>
+
+      </div>
+    <% end %>
+  </div>
+</div>

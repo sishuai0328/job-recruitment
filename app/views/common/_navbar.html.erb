@@ -2,15 +2,24 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
 
-        <!-- ===logo=== -->
+        <!-- ===logo开始=== -->
         <div class="navbar-header">
             <a class="navbar-brand" href="/" >Job Recruitment </a>
         </div>
+        <!-- ===logo结束=== -->
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-
-        <!-- ===账号操作=== -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <!-- ===搜索框开始=== -->
+            <ul class="nav navbar-nav">
+              <li>
+                  <div class="form-group form-inline search-bar">
+                    <%= render :partial => "jobs/search_bar"%>
+                 </div>
+                </li>
+            </ul>
+            <!-- ===搜索框结束=== -->
+            <!-- ===账号操作开始=== -->
             <ul class="nav navbar-nav navbar-right">
                 <% if !current_user %>
                    <li><a href="#" data-toggle="modal" data-target="#signup-modal">注册</a></li>
@@ -34,6 +43,7 @@
                   </li>
                 <% end %>
             </ul>
+            <!-- ===账号操作结束=== -->
         </div>
         <!-- /.navbar-collapse -->
     </div>

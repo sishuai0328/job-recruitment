@@ -21,8 +21,13 @@ Rails.application.routes.draw do
       post :favorites #因与下面的favorite同名，出现routes错误，此处改名处理
       post :unfavorite
     end
+    collection do
+      get :search
+    end
     resources :resumes
   end
+
+
 
   # 我收藏的工作
   namespace :favorite do #此处即为上面所说变量重名的问题

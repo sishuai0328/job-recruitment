@@ -118,3 +118,57 @@
   font-size: 12px;
 }
 // ===登录弹窗结束===
+
+//==搜索结果开始==
+#search-page {
+
+}
+#search-page .tips{
+  border: 3px solid #E0E0E0;
+  box-shadow: 3px 3px 3px #9E9E9E ;
+  border-radius: 5px;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 8px;
+
+}
+#search-page  .tips p {
+  text-align: center;
+  margin-top: 5px;
+}
+#search-page .no-find{
+  margin-top: 0 auto;
+}
+#search-page .no-find p {
+  margin: 0 auto;
+  line-height: 400px;
+  text-align:center;
+  height: 400px;
+}
+#search-page .job-result{
+
+}
+#search-page .find-job{
+
+}
+#search-page .find{
+  background-color: white;
+}
+#search-page .job-list{
+}
+//==搜索结果结束==
+
+
+//==搜索框开始==
+.form-group {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.input-group {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+    width: 250px; //加上width
+}
+//==搜索框结束==

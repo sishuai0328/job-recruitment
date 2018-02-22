@@ -1,6 +1,7 @@
 class JobsController < ApplicationController
   # 需要登录的操作
   before_action :authenticate_user!, only: [:new, :create, :update, :edit, :destroy]
+  before_action :validate_search_key, only: [:search]
 
   def show
     @job = Job.find(params[:id])
@@ -19,6 +20,13 @@ class JobsController < ApplicationController
               Job.published.recent
             end
   end
+
+  def search
+      if @query_string.present?
+        search_result = Job.joins(:location).ransack(@search_criteria).result(:distinct => true)
+        @jobs = search_result.published.paginate(:page => params[:page], :per_page => 5 )
+      end
+    end
 
   def new
     @job = Job.new
@@ -92,4 +100,18 @@ class JobsController < ApplicationController
   def job_params
     params.require(:job).permit(:title, :description, :company, :category_id, :location_id, :wage_upper_bound, :wage_lower_bound, :contact_email, :is_hidden)
   end
+
+  def validate_search_key
+    @query_string = params[:q].gsub(/\\|\'|\/|\?/, "")
+    if params[:q].present?
+      @search_criteria =  {
+        title_or_company_or_location_name_cont: @query_string
+      }
+    end
+  end
+
+  def search_criteria(query_string)
+    { :title_or_company_or_location_name_cont => query_string }
+  end
+
 end
