@@ -58,3 +58,77 @@
     </tbody>
 
 </table>
+
+
+<!--职位列表-->
+<!-- <div class="col-md-10 col-centered">
+  <div class="panel panel-default ">
+    <div class="panel-heading">
+      <h3>职业列表
+        <div class="dropdown clearfix pull-right">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              按条件排序
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+                <li>
+                  <%= link_to("按照薪资下限排序", jobs_path(:order => "by_lower_bound")) %>
+                </li>
+                <li>
+                    <%= link_to("按照薪资上限排序", jobs_path(:order => "by_upper_bound")) %>
+                </li>
+                <li>
+                  <%= link_to("按照发表时间排序", jobs_path ) %>
+                </li>
+            </ul>
+        </div>
+        </div>
+      </h3>
+      <div class="context  cd-md-12 col-xs-12">
+      <% @jobs.each do |job| %>
+        <div class="cd-md-12 col-xs-12"> -->
+          <!--职业信息-->
+          <!-- <div class="left  cd-md-4 col-xs-4">
+              <p style="color:blue;margin-left:10px;font-size:20px;">
+                <i class="fa fa-address-card-o" aria-hidden="true" style="color:#616161;font-size:20px;"></i>
+                <%= link_to(job.title, job_path(job)) %>
+                <span style="color:gray;font-size:15px;"><%= job.created_at %></span>
+              </p>
+              <p style="color:#FB8C00;font-size:20px;margin-left:10px;">
+                <i class="fa fa-money" aria-hidden="true" style="color:#616161;font-size:20px;"></i>
+                 <%= job.wage_lower_bound %>$ ~ <%= job.wage_upper_bound %>$
+              </p> -->
+              <!--职位-->
+              <!-- <div class="job  cd-md-2 col-xs-2">
+                <P style="font-size:15px;">&nbsp;
+                  <i class="fa fa-black-tie" aria-hidden="true" style="color:#616161;font-size:15px;"></i>
+                  <%= job.category %>
+                </p>
+              </div>
+          </div> -->
+          <!--公司信息-->
+          <!-- <div class="right  cd-md-4 col-xs-4">
+            <p style="color:#03A9F4;margin-left:10px;font-size:20px;">
+              <i class="fa fa-building" aria-hidden="true" style="color:#616161;font-size:20px;"></i>
+              &nbsp;<%= job.company %>
+              <% if current_user && current_user.is_favorite_of?(job) %>
+                <%= link_to unfavorite_job_path(job), method: :post do %><i class="fa fa-heart fa-lg" aria-hidden="true"></i><% end %>
+              <% else %>
+                <%= link_to favorites_job_path(job), method: :post do %><i class="fa fa-heart-o fa-lg" aria-hidden="true"></i><% end %>
+              <% end %>
+            </p>
+
+            <p style="margin-left:10px;color:#757575;font-size:20px;">
+              <i class="fa fa-envelope-o" aria-hidden="true" style="color:#616161;font-size:20px;">
+              </i>&nbsp;&nbsp;<%= job.contact_email %>
+            </p>
+            <p style="margin-left:10px;color:#212121;font-size:20px;">
+              <i class="fa fa-map-marker" aria-hidden="true" style="color:#616161;font-size:20px;"></i>
+              &nbsp;&nbsp;<%= job.location %>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div> -->
