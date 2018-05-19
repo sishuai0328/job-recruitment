@@ -1,6 +1,5 @@
-
 <!-- ===新增职位=== -->
-<div class="pull-right">
+<!-- <div class="pull-right">
   <%= link_to("Add a job", new_admin_job_path, :class => "btn btn-default") %>
 </div>
 
@@ -38,7 +37,7 @@
     <tr>
 
         <td>
-            <!-- ===判断职位公开／隐匿状态=== -->
+            ===判断职位公开／隐匿状态===
             <%= render_job_status(job) %>
 
             <%= link_to(job.title, admin_job_path(job)) %>
@@ -50,14 +49,14 @@
           <span class="text-align:center"><%= job.resumes.count %>/<%= job.job_favorites.count %></span>
         </td>
         <td>
-            <!-- ===删除和修改=== -->
+            ===删除和修改===
             <%= link_to("Edit", edit_admin_job_path(job), :class => "btn btn-xs btn-info") %>
 
             <%= link_to("Destroy", admin_job_path(job), :method => :delete, :class => "btn btn-xs btn-danger", :data => { :confirm => "Are you sure?" }) %>
 
 
             <% if job.is_hidden %>
-            <!-- ===公开和隐藏职位=== -->
+            ===公开和隐藏职位===
             <%= link_to("Publish", publish_admin_job_path(job) , :method => :post, :class => "btn btn-xs btn-success") %>
 
         <% else %>
@@ -70,4 +69,156 @@
         </td>
     </tr>
     <% end %>
-</table>
+</table> -->
+
+
+<div class="col-md-12">
+  <div class="row">
+    <div class="col-md-12 btn-group admin-select-job-box">
+      <!--=== 工作地点下拉选单 ===-->
+      <div class="dropdown btn-group clearfix">
+        <% if params[:location].present? %>
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <%= params[:location] %> <span class="caret"></span>
+        </button>
+        <% else %>
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          工作地点 <span class="caret"></span>
+        </button>
+        <% end %>
+        <ul class="dropdown-menu" selection aria-labelledby="dropdownMenuDivider">
+          <% @locations.each do |location| %>
+          <li>
+            <%= link_to(location.name, admin_jobs_path(:location => location.name)) %>
+          </li>
+          <% end %>
+          <li>
+            <%= link_to("所有城市", admin_jobs_path(:location => "所有城市") ) %>
+          </li>
+        </ul>
+      </div>
+
+      <!--=== 职位类型下拉选单 ===-->
+      <div class="dropdown btn-group clearfix">
+        <% if params[:category].present? %>
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <%= params[:category] %> <span class="caret"></span>
+        </button>
+        <% else %>
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          职位类型 <span class="caret"></span>
+        </button>
+        <% end %>
+        <ul class="dropdown-menu" selection aria-labelledby="dropdownMenuDivider">
+          <% @categorys.each do |category| %>
+          <li>
+            <%= link_to(category.name, admin_jobs_path(:category => category.name)) %>
+          </li>
+          <% end %>
+          <li>
+            <%= link_to("所有类型", admin_jobs_path(:category => "所有类型") ) %>
+          </li>
+        </ul>
+      </div>
+
+      <!--=== 月薪下拉选单 ===-->
+      <div class="dropdown btn-group clearfix">
+        <!-- <% if params[:wage].present? %>
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <%= params[:wage] %> <span class="caret"></span>
+        </button>
+        <% else %> -->
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          月薪 <span class="caret"></span>
+        </button>
+        <!-- <% end %> -->
+        <ul class="dropdown-menu" selection aria-labelledby="dropdownMenuDivider">
+          <li>
+            <%= link_to("按照薪资下限排序", admin_jobs_path(:order => "by_lower_bound")) %>
+          </li>
+          <li>
+              <%= link_to("按照薪资上限排序", admin_jobs_path(:order => "by_upper_bound")) %>
+
+          </li>
+          <li>
+            <%= link_to("按照发表时间排序", admin_jobs_path ) %>
+          </li>
+        </ul>
+      </div>
+
+      <!--=== 新增职位 ===-->
+      <div class="job">
+        <%= link_to("新增职位", new_admin_job_path, class: "btn btn-primary pull-right action-btn") %>
+      </div>
+    </div>
+  </div>
+
+  <br><br>
+
+  <table class="table table-boldered table-striped custab" >
+      <thead>
+          <tr>
+              <td>
+                  职缺
+              </td>
+              <td>
+                  职位类型
+              </td>
+              <td>
+                  公司名称
+              </td>
+              <td>
+                  薪资范围
+              </td>
+              <td>
+                  简历/收藏
+              </td>
+              <td>
+                  发布时间
+              </td>
+              <td class="count">已发布职位：<span><%= @jobs.count %></span>
+              </td>
+          </tr>
+      </thead>
+
+      <% @jobs.each do |job| %>
+      <tr>
+
+          <td>
+              <!-- ===判断职位公开／隐匿状态=== -->
+              <%= render_job_status(job) %>
+
+              <%= link_to(job.title, admin_job_path(job)) %>
+          </td>
+          <td>
+            <span class="<%= job.category.icon %>"> <%= job.category.name %></span>
+          </td>
+          <td>
+              <%= job.company %>
+          </td>
+          <td> <%= job.wage_lower_bound %> ~<%= job.wage_upper_bound %></td>
+          <td>
+            <span class="text-align:center"><%= link_to(job.resumes.count, admin_job_resumes_path(job)) %>/<%= job.job_favorites.count %></span>
+          </td>
+          <td>
+              <%= job.created_at.strftime("%Y-%m-%d") %>
+          </td>
+          <td>
+              <!-- ===删除和修改=== -->
+              <%= link_to("Edit", edit_admin_job_path(job), :class => "btn btn-xs btn-info") %>
+
+              <%= link_to("Destroy", admin_job_path(job), :method => :delete, :class => "btn btn-xs btn-danger", :data => { :confirm => "Are you sure?" }) %>
+
+
+              <% if job.is_hidden %>
+              <!-- ===公开和隐藏职位=== -->
+              <%= link_to("Publish", publish_admin_job_path(job) , :method => :post, :class => "btn btn-xs btn-success") %>
+
+          <% else %>
+              <%= link_to("Hide", hide_admin_job_path(job), :method => :post,  :class => "btn btn-xs btn-warning") %>
+
+              <% end %>
+          </td>
+      </tr>
+      <% end %>
+  </table>

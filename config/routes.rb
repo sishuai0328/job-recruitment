@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       resources :posts
     end
     resources :posts
+    resources :resumes
   end
 
   resources :groups do

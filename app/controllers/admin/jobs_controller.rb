@@ -10,10 +10,52 @@ class Admin::JobsController < ApplicationController
     @job = Job.find(params[:id])
   end
 
+  # def index
+  #   @jobs = Job.all
+  #   @categorys = Category.all
+  #   @locations = Location.all
+  # end
+
   def index
-    @jobs = Job.all
-    @categorys = Category.all
     @locations = Location.all
+    @categorys = Category.all
+
+    # 判断是否筛选城市 #
+    if params[:location].present?
+      @location = params[:location]
+      @location_id = Location.find_by(name: @location)
+
+      if @location == '所有城市'
+        @jobs = Job.recent.paginate(:page => params[:page], :per_page => 10)
+      else
+        @jobs = Job.where(:location => @location_id).recent.paginate(:page => params[:page], :per_page => 10)
+      end
+
+    # 判断是否筛选职位类型 #
+    elsif params[:category].present?
+      @category = params[:category]
+      @category_id = Category.find_by(name: @category)
+
+      if @category == '所有类型'
+        @jobs = Job.recent.paginate(:page => params[:page], :per_page => 10)
+      else
+        @jobs = Job.where(:category => @category_id).recent.paginate(:page => params[:page], :per_page => 10)
+      end
+
+    # 判断是否筛选薪水 #
+    elsif @jobs = case params[:order]
+        when 'by_lower_bound'
+          Job.order('wage_lower_bound DESC')
+        when 'by_upper_bound'
+          Job.order('wage_upper_bound DESC')
+        else
+          Job.recent
+    end
+
+    # 预设显示所有公开职位 #
+    else
+      @jobs = Job.published.recent.paginate(:page => params[:page], :per_page => 10)
+    end
   end
 
   def new
