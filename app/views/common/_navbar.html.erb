@@ -32,12 +32,13 @@
                     </a>
                     <ul class="dropdown-menu">
 
-                        <li> <%= link_to("Admin Panel", admin_jobs_path) %> </li>
-                        <li> <%= link_to("My Groups", account_groups_path) %></li>
-                        <li> <%= link_to("My Posts", account_posts_path) %></li>
-                        <li> <%= link_to("My Favorite Job", favorite_jobs_path) %> </li>
+                        <li> <%= link_to("后台管理", admin_jobs_path) %> </li>
+                        <li> <%= link_to("我的讨论组", account_groups_path) %></li>
+                        <li> <%= link_to("我的文章", account_posts_path) %></li>
+                        <li> <%= link_to("收藏职位", favorite_jobs_path) %> </li>
+                        <li> <%= link_to("投递历史", account_resumes_path) %> </li>
                         <li class="divider"> </li>
-                        <li> <%= link_to("登出", destroy_user_session_path, method: :delete) %> </li>
+                        <li> <%= link_to("退出", destroy_user_session_path, method: :delete) %> </li>
 
                     </ul>
                   </li>

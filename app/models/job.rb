@@ -9,8 +9,14 @@ class Job < ApplicationRecord
   scope :published, -> { where(is_hidden: false) }
   # 重构重复代码／最近排序
   scope :recent, -> { order('created_at DESC') }
+  scope :wage1, -> { where('wage_lower_bound <= 5 or wage_upper_bound <= 5') }
+  scope :wage2, -> { where('wage_lower_bound between 5 and 10 or wage_upper_bound between 5 and 10') }
+  scope :wage3, -> { where('wage_lower_bound between 10 and 15 or wage_upper_bound between 10 and 15') }
+  scope :wage4, -> { where('wage_lower_bound between 15 and 25 or wage_upper_bound between 15 and 25') }
+  scope :wage5, -> { where('wage_lower_bound >= 25 or wage_upper_bound >= 25') }
 
-  has_many :resumes
+  # has_many :resumes
+  has_many :resumes, dependent: :destroy
 
   # 收藏职位
   has_many :job_favorites

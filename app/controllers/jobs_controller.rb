@@ -3,10 +3,6 @@ class JobsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :update, :edit, :destroy]
   before_action :validate_search_key, only: [:search]
 
-  def show
-    @job = Job.find(params[:id])
-  end
-
   # def index
   #
   #   @jobs = case params[:order]
@@ -47,18 +43,42 @@ class JobsController < ApplicationController
       end
 
     # 判断是否筛选薪水 #
-    elsif @jobs = case params[:order]
-        when 'by_lower_bound'
-          Job.published.order('wage_lower_bound DESC')
-        when 'by_upper_bound'
-          Job.published.order('wage_upper_bound DESC')
-        else
-          Job.published.recent
-    end
+    elsif params[:wage].present?
+      @wage = params[:wage]
+      if @wage == '5k以下'
+        @jobs = Job.wage1.published.recent.paginate(:page => params[:page], :per_page => 10)
+      elsif @wage == '5~10k'
+        @jobs = Job.wage2.published.recent.paginate(:page => params[:page], :per_page => 10)
+      elsif @wage == '10~15k'
+        @jobs = Job.wage3.published.recent.paginate(:page => params[:page], :per_page => 10)
+      elsif @wage == '15~25k'
+        @jobs = Job.wage4.published.recent.paginate(:page => params[:page], :per_page => 10)
+      else
+        @jobs = Job.wage5.published.recent.paginate(:page => params[:page], :per_page => 10)
+      end
+
+    # elsif @jobs = case params[:order]
+    #     when 'by_lower_bound'
+    #       Job.published.order('wage_lower_bound DESC')
+    #     when 'by_upper_bound'
+    #       Job.published.order('wage_upper_bound DESC')
+    #     else
+    #       Job.published.recent
+    # end
 
     # 预设显示所有公开职位 #
     else
       @jobs = Job.published.recent.paginate(:page => params[:page], :per_page => 10)
+    end
+  end
+
+  def show
+    @job = Job.find(params[:id])
+    @category = @job.category
+    # 搜索该用户投递此职位的简历数量 #
+    @resumes = Resume.where(:job => @job, :user => current_user)
+    if @job.is_hidden
+      redirect_to root_path, alert: "此职缺暂未开放。"
     end
   end
 
@@ -106,14 +126,14 @@ class JobsController < ApplicationController
   end
 
   # 隐藏／显示职位提示
-  def show
-    @job = Job.find(params[:id])
-
-    if @job.is_hidden
-      flash[:warning] = "This Job already archieved"
-      redirect_to root_path
-    end
-  end
+  # def show
+  #   @job = Job.find(params[:id])
+  #
+  #   if @job.is_hidden
+  #     flash[:warning] = "This Job already archieved"
+  #     redirect_to root_path
+  #   end
+  # end
 
   def favorites
     @job = Job.find(params[:id])

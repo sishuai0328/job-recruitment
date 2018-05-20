@@ -52,4 +52,9 @@ class User < ApplicationRecord
     participated_groups.delete(group)
   end
 
+  #  是否投递过
+  def is_upload_of?(job)
+    resumes.include?(job)
+  end
+
 end

@@ -7,7 +7,7 @@
         <h3><%= link_to(job.title, job_path(job), target: "_blank" )%></h3><span><%= job.created_at.strftime("%Y-%m-%d") %></span>
       </div>
       <div class="info-mid">
-        <%= job.wage_lower_bound %>  ~ <%= job.wage_upper_bound %>
+        <%= job.wage_lower_bound %> k ~ <%= job.wage_upper_bound %> k
       </div>
       <div class="info-bot">
         <span class="category"><span class="<%= job.category.icon %>"> <%= job.category.name %></span>
@@ -17,7 +17,12 @@
     <!--=== 公司信息 ===-->
     <div class="col-md-6 col-xs-12 company">
       <div class="company-top">
-        <span><%= link_to(job.company, job_path(job))%></span>
+        <span><%= job.company %></span>
+        <% if current_user && current_user.is_favorite_of?(job) %>
+          <%= link_to unfavorite_job_path(job), method: :post do %><i class="fa fa-star" aria-hidden="true"></i><% end %>
+        <% else %>
+          <%= link_to favorites_job_path(job), method: :post do %><i class="fa fa-star-o" aria-hidden="true"></i><% end %>
+        <% end %>
       </div>
       <div class="company-mid">
         <span class="fa fa-envelope"></span><span><%= job.contact_email %></span>

@@ -196,10 +196,16 @@
           <td>
               <%= job.company %>
           </td>
-          <td> <%= job.wage_lower_bound %> ~<%= job.wage_upper_bound %></td>
           <td>
+            <%= render_job_wage(job) %>
+            <!-- <%= job.wage_lower_bound %> k ~ <%= job.wage_upper_bound %>  k </td> -->
+          <!-- <td>
             <span class="text-align:center"><%= link_to(job.resumes.count, admin_job_resumes_path(job)) %>/<%= job.job_favorites.count %></span>
-          </td>
+          </td> -->
+          <td>
+          <%= link_to admin_job_resumes_path(job) do %><span class="<%= render_job_resumes(job) %>"></span> <%= job.resumes.count %><% end %> /
+          <span class="<%= render_job_collections(job) %>"></span> <%= job.job_favorites.count %>
+        </td>
           <td>
               <%= job.created_at.strftime("%Y-%m-%d") %>
           </td>
