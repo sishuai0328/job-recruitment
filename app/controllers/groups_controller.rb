@@ -4,6 +4,8 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.all
+    # @user = current_user
+    # @groups = Group.where(:user_id => @user).order("created_at DESC").paginate(:page => params[:page], :per_page => 7)
   end
 
   def show
