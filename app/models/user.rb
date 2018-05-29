@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :resumes
   has_many :groups
   has_many :posts
+  has_many :jobs
 
   # 参与讨论组
   has_many :group_relationships
@@ -20,6 +21,10 @@ class User < ApplicationRecord
   # 判断数据库中的管理员栏位的布尔值
   def admin?
     is_admin
+  end
+
+  def website_admin?
+    is_website_admin
   end
 
   # 是否已收藏职位

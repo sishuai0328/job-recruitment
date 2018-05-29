@@ -1,4 +1,4 @@
-<div class="pull-right">
+<!-- <div class="pull-right">
   <%= link_to("新增工作地点", new_admin_location_path, :class => "btn btn-primary" ) %>
 </div>
 
@@ -17,4 +17,45 @@
     </td>
   </tr>
   <% end %>
-</table>
+</table> -->
+
+<div class="col-md-8 col-md-offset-2 admin-box">
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <td colspan="6" class="title-box">
+              <div class="title"><h2><span class="fa fa-location-arrow"></span> 工作地点</h2></div>
+              <div class="button"><%= link_to("新增工作地点", new_admin_location_path, class: "btn btn-primary pull-right") %></div>
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <% i = 1 %>
+          <% @locations.each do |location| %>
+          <% if i%2 == 1%>
+          <tr>
+          <% end %>
+            <td class="name-box"># <%= location.name %></td>
+            <td>
+              <!--=== 修改/隐藏/显示 ===-->
+              <div>
+              <%= link_to(edit_admin_location_path(location), class: "btn btn-md btn-default") do %>
+                <span class="fa fa-pencil"></span>
+              <% end %>
+              <%= link_to(admin_location_path(location),  class: "btn btn-md btn-default", :method => :delete, :data => { :confirm => "Are you sure?" }) do %>
+                <span class="fa fa-trash"></span>
+              <% end %>
+              </div>
+            </td>
+          <% if i%2 == 0%>
+          </tr>
+          <% end %>
+          <% i += 1 %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

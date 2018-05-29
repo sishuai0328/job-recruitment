@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180529125851) do
+ActiveRecord::Schema.define(version: 20180529141153) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 20180529125851) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "user_id"
-    t.string   "logo"
   end
 
   create_table "job_favorites", force: :cascade do |t|
@@ -54,6 +53,7 @@ ActiveRecord::Schema.define(version: 20180529125851) do
     t.integer  "category_id"
     t.integer  "location_id"
     t.string   "company"
+    t.integer  "user_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 20180529125851) do
     t.datetime "updated_at",                             null: false
     t.boolean  "is_admin",               default: false
     t.string   "username"
+    t.boolean  "is_website_admin",       default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

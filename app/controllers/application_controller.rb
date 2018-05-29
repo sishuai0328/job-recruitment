@@ -9,4 +9,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_is_website_admin
+    if !current_user.website_admin?
+      redirect_to admin_jobs_path, alert: "你没有权限进行此操作。"
+    end
+  end
+
 end

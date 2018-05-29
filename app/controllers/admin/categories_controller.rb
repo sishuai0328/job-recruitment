@@ -1,6 +1,6 @@
 class Admin::CategoriesController < ApplicationController
   before_action :authenticate_user!
-  before_action :require_is_admin
+  before_action :require_is_website_admin
 
   layout "admin"
 
