@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
   # 需要登录的操作
-  before_action :authenticate_user!, only: [:new, :create, :update, :edit, :destroy]
+  before_action :authenticate_user!, only: [:favorites, :unfavorite]
   before_action :validate_search_key, only: [:search]
 
   # def index

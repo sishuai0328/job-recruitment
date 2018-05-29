@@ -1,4 +1,4 @@
-<%= simple_form_for [@group,@post] do |f| %>
+<!-- <%= simple_form_for [@group,@post] do |f| %>
   <div class="form-group">
     <%= f.input :title, input_html: { class: "form-control"} %>
     <%= f.input :content, input_html:{class: "form-control"} %>
@@ -6,4 +6,18 @@
   <div class="form-actions">
     <%= f.submit "Submit", disable_with: "Submiting...", class: "btn btn-primary" %>
   </div>
-<% end %>
+<% end %> -->
+
+
+<div class="col-md-10 col-md-offset-1 job-form-content">
+  <hr style="size:2px" />
+  <%= simple_form_for [@group,@post] do |f| %>
+    <div class="form-group">
+      <%= f.input :title, input_html: { class: "form-control"} %>
+      <%= f.input :content, input_html:{class: "form-control"} %>
+    </div>
+    <div class="form-actions">
+      <%= f.submit "送出", disable_with: "Submiting...", class: "button"%>
+    </div>
+  <% end %>
+</div>

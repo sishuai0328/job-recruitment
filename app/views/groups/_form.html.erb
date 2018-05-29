@@ -1,5 +1,5 @@
 <!-- ===Bootstrap表单开始=== -->
-<%= form_for @group do |f| %>
+<!-- <%= form_for @group do |f| %>
 
   <%= simple_form_for @group do |f| %>
     <div class="form-group">
@@ -9,5 +9,19 @@
     <%= f.submit "Submit", class: "btn btn-primary", data: { disable_with: "Submiting..." } %>
   <% end %>
 
-<% end %>
+<% end %> -->
 <!-- ===Bootstrap表单开始=== -->
+
+
+<div class="col-md-10 col-md-offset-1 job-form-content">
+  <hr style="size:2px" />
+  <%= simple_form_for @group do |f| %>
+    <div class="form-group">
+      <%= f.input :title, :label => false, placeholder: '请输入讨论组名称' %>
+      <%= f.input :description, :label => false, placeholder: '请输入讨论组结束', input_html: { class: 'job-content-info' } %>
+    </div>
+    <div class="form-actions">
+      <%= f.submit "送出", disable_with: "Submiting...", class: "button"%>
+    </div>
+  <% end %>
+</div>
