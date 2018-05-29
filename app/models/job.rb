@@ -7,6 +7,7 @@ class Job < ApplicationRecord
   validates :wage_lower_bound, numericality: { greater_than: 0}
   # 重构重复代码／公开
   scope :published, -> { where(is_hidden: false) }
+  scope :random5, -> { limit(5).order("RANDOM()") }
   # 重构重复代码／最近排序
   scope :recent, -> { order('created_at DESC') }
   scope :wage1, -> { where('wage_lower_bound <= 5 or wage_upper_bound <= 5') }

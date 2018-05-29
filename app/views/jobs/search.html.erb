@@ -1,31 +1,87 @@
-<div id="search-page" class="container-fluid jobs-show-page col-md-12 col-xs-12">
-    <br>
-    <div class="tips col-md-2 col-xs-2 ">
-      <p style="font-size:20px;"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;搜索结果:</p>
-    </div>
-    <div class="pull-right">
-      <%= link_to(content_tag(:i, " 查看全部职位 ", class: "fa fa-reply-all"), jobs_path) %> |
-      <%= link_to(content_tag(:i, " 返回上一层", class: "fa fa-arrow-left"), url_for(:back)) %>
-    </div>
-    <br>
-    <hr>
-    <div class="job-result col-md-12 col-xs-12 col-centered">
-    <% if @jobs.blank?%>
-      <div class="no-find col-md-6 col-xs-6 col-centered">
-        <p style="color:#f44336;font-size:28px;">没有搜索到关于“<span style="color:#212121;"><%= @query_string %></span>”结果.</p>
-      </div>
-    <% else %>
-      <div class="find-job col-md-10 col-xs-10 col-centered">
-          <div class="find col-md-12 col-xs-12 col-centered">
-            <h3 style="color:#212121;font-size:28px;text-align:center;">
-              搜索到&nbsp;<span style="color:#03A9F4;font-size:30px;"><%= @jobs.count %></span>&nbsp;个关于&nbsp;“<span style="color:#FF5722;"><%= @query_string %></span>”&nbsp;工作</h3>
-          </div>
-
-          <div class="job-list col-md-12 col-xs-12 col-centered ">
-            <%= render :partial => "form", :collection => @jobs, :as => :job %>
-          </div>
-
-      </div>
-    <% end %>
+<!--=== 搜索结果，没有符合条件的数据 ===-->
+<% if @jobs.blank?%>
+<div class="col-md-10 col-md-offset-1">
+  <div class="search-error">
+    <h2>没有符合搜索条件的资料哦！</h2><br />
+    <p><%= link_to("立即查看工作", jobs_path, class: "btn btn-lg btn-success") %></p>
   </div>
 </div>
+<% else %>
+<!--=== 搜索结果，有符合条件的数据 ===-->
+  <!--=== 搜索结果文字 ===-->
+<div class="col-md-10 col-md-offset-1 page-title">
+  <h1><span class="fa fa-search"></span> 搜索结果</h1>
+</div>
+
+<!--=== 搜索结果内容 ===-->
+<div class="col-md-10 col-md-offset-1 job-content">
+  <div class="row">
+    <!--=== 左侧区块 ===-->
+    <% @jobs.each do |job| %>
+    <div class="col-md-9 col-xs-12 job-box">
+      <!--=== 职位信息 ===-->
+      <div class="col-md-6 col-xs-12 info">
+        <div class="info-top">
+          <h3><%= link_to(job.title, job_path(job), target: "_blank" )%></h3><span><%= job.created_at.strftime("%Y-%m-%d") %></span>
+        </div>
+        <div class="info-mid">
+          <%= job.wage_lower_bound %> k ~ <%= job.wage_upper_bound %> k
+        </div>
+        <div class="info-bot">
+          <span class="category"><span class="<%= job.category.icon %>"> <%= job.category.name %></span>
+        </div>
+      </div>
+
+      <!--=== 公司信息 ===-->
+      <div class="col-md-6 col-xs-12 company">
+        <div class="company-top">
+          <span><%= job.company %></span>
+          <% if current_user && current_user.is_favorite_of?(job) %>
+            <%= link_to unfavorite_job_path(job), method: :post do %><i class="fa fa-star" aria-hidden="true"></i><% end %>
+          <% else %>
+            <%= link_to favorites_job_path(job), method: :post do %><i class="fa fa-star-o" aria-hidden="true"></i><% end %>
+          <% end %>
+        </div>
+        <div class="company-mid">
+          <span class="fa fa-envelope"></span><span><%= job.contact_email %></span>
+        </div>
+        <div class="company-bot">
+          <span class="fa fa-map-marker"></span><span><%= job.location.name %></span>
+        </div>
+      </div>
+    </div>
+    <% end %>
+
+    <!--=== 职位推荐：随机推荐五个职位 ===-->
+    <div class="col-md-2 side-box">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-10 col-md-offset-1 suggest-title">
+              <span class="fa fa-tags"></span> <span>职位推荐</span>
+            </div>
+            <div class="row">
+            <% @suggests.each do |job| %>
+            <div class="col-xs-10 col-xs-offset-1 suggest-content">
+              <div>
+                <h3>
+                  <%= link_to job_path(job), target: "_blank" do %>
+                    <%= job.title %> [<%= job.location.name %>]
+                  <% end %>
+                </h3>
+              </div>
+              <div><p><%= job.wage_lower_bound %> k ~ <%= job.wage_upper_bound %> k</p></div>
+              <div><span><%= job.company %></span></div>
+            </div>
+            <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--=== 换页区块 ===-->
+
+<% end %>

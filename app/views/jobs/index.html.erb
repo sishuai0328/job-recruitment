@@ -145,4 +145,33 @@
       <h2>此分类暂时没有招聘职位哦，请尝试其他选项。</h2>
     </div>
 <% end %>
+
+<!--=== 职位推荐：随机推荐五个职位 ===-->
+    <div class="col-md-2 side-box">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-10 col-md-offset-1 suggest-title">
+              <span class="fa fa-tags"></span> <span>职位推荐</span>
+            </div>
+            <div class="row">
+            <% @suggests.each do |job| %>
+            <div class="col-xs-10 col-xs-offset-1 suggest-content">
+              <div>
+                <h3>
+                  <%= link_to job_path(job), target: "_blank" do %>
+                    <%= job.title %> [<%= job.location.name %>]
+                  <% end %>
+                </h3>
+              </div>
+              <div><p><%= job.wage_lower_bound %> k ~ <%= job.wage_upper_bound %> k</p></div>
+              <div><span><%= job.company %></span></div>
+            </div>
+            <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -66,6 +66,30 @@
         <p class="email"><span class="fa fa-envelope"></span> <%= @job.contact_email %></p>
       </div>
     </div>
+
+    <!--======== Start - 右侧区块 =========-->
+    <% if @sames.length > 0 %>
+    <div class="col-md-3">
+      <div class="same-box">
+        <div class="title">
+          <span>相似职位</span>
+        </div>
+        <% @sames.each do |job| %>
+          <div class="same-content">
+            <div>
+              <h3>
+                <%= link_to job_path(job), target: "_blank" do %>
+                  <%= job.title %> [<%= job.location %>]
+                <% end %>
+              </h3>
+            </div>
+            <div><p><%= job.wage_lower_bound %> k ~ <%= job.wage_upper_bound %> k</p></div>
+            <div><span><%= job.company %></span></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
     <!--======== End - 左侧区块 =========-->
 
   </div>
