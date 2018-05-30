@@ -18,6 +18,10 @@
   <%= simple_form_for @group do |f| %>
     <div class="form-group">
       <%= f.input :title, :label => false, placeholder: '请输入讨论组名称' %>
+      <div class="field">
+        <%= f.file_field :avatar %>
+        <%= f.hidden_field :avatar_cache %>
+      </div>
       <%= f.input :description, :label => false, placeholder: '请输入讨论组结束', input_html: { class: 'job-content-info' } %>
     </div>
     <div class="form-actions">

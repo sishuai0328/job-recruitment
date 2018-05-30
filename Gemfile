@@ -62,6 +62,8 @@ gem 'font-awesome-sass', '~> 5.0.6'
 # 搜索功能
 gem 'ransack'
 
+gem 'mini_magick'
+
 # markdown解析与渲染
 gem 'redcarpet'
 gem 'rouge'

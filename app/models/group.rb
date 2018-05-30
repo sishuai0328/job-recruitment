@@ -1,4 +1,5 @@
 class Group < ApplicationRecord
+ mount_uploader :avatar, AvatarUploader
  validates :title, presence: true
 
  belongs_to :user
