@@ -106,7 +106,7 @@
 <div class="row">
 <% if @jobs.length > 0 %>
   <% @jobs.each do |job| %>
-  <div class="col-md-9 col-xs-12 job-box">
+  <div class="col-md-9 col-xs-12 job-box" style="position:relative">
     <!--=== 职位信息 ===-->
     <div class="col-md-6 col-xs-12 info">
       <div class="info-top">
@@ -147,7 +147,7 @@
 <% end %>
 
 <!--=== 职位推荐：随机推荐五个职位 ===-->
-    <div class="col-md-2 side-box">
+    <div class="col-md-2 side-box" style="position:absolute;top:30px">
       <div class="row">
         <div class="col-md-12">
           <div class="row">

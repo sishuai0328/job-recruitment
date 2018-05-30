@@ -79,7 +79,10 @@
             <div>
               <h3>
                 <%= link_to job_path(job), target: "_blank" do %>
-                  <%= job.title %> [<%= job.location %>]
+                  <%= job.title %>
+                <% end %>
+                <%= link_to job_path(job), target: "_blank" do %>
+                  [<%= job.location.name %>]
                 <% end %>
               </h3>
             </div>
@@ -89,6 +92,7 @@
         <% end %>
       </div>
     </div>
+
     <% end %>
     <!--======== End - 左侧区块 =========-->
 
