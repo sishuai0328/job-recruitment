@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
   before_action :find_post_and_check_permission , :only => [:edit, :update, :destroy]
+  impressionist :actions=>[:show]
 
   def new
     @group = Group.find(params[:group_id])
@@ -11,6 +12,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:group_id])
     @group = @post.group
+    impressionist(@post) 
   end
 
   def edit

@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   validates :content, presence: true
-
+  # 统计访问量
+  is_impressionable
   belongs_to :user
   belongs_to :group
 

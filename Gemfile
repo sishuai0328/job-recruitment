@@ -62,7 +62,11 @@ gem 'font-awesome-sass', '~> 5.0.6'
 # 搜索功能
 gem 'ransack'
 
+# 修改照片尺寸
 gem 'mini_magick'
+
+# 统计访问量
+gem 'impressionist'
 
 # markdown解析与渲染
 gem 'redcarpet'
