@@ -29,6 +29,7 @@
          <th>发表者</th>
          <th>发表时间</th>
          <th>访问量</th>
+         <th>点赞量</th>
        </tr>
      </thead>
      <tbody>
@@ -39,6 +40,7 @@
            <td><%= post.user.email %></td>
            <td><%= post.created_at %></td>
            <td><%= "#{post.impressionist_count(:filter=>:session_hash)}" %></td>
+           <td><%= post.voters.count %></td>
          </tr>
        <% end %>
      </tbody>

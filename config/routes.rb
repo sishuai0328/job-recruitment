@@ -48,7 +48,12 @@ Rails.application.routes.draw do
       post :join
       post :quit
     end
-    resources :posts
+    resources :posts do
+      member do
+        post :upvote
+        post :downvote
+      end
+    end
   end
 
 

@@ -1,6 +1,12 @@
 <div class="post-container">
   <h1> <%= @post.title %> </h1>
-
+  <span class="pull-left">
+    <% if current_user && current_user.is_voter_of?(@post) %>
+      <%= link_to("", downvote_group_post_path(@post), method: :post, class: "fa fa-heart fa-2x", style: "color:red;") %>
+     <% else %>
+      <%= link_to("", upvote_group_post_path(@post), method: :post, class: "fa fa-heart-o fa-2x") %>
+    <% end %>
+  </span>
   <p>
     <div class="markdown">
       <%= markdown(@post.content) %>

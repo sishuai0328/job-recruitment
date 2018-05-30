@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy, :downvote, :upvote]
   before_action :find_post_and_check_permission , :only => [:edit, :update, :destroy]
   impressionist :actions=>[:show]
 
@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:group_id])
     @group = @post.group
-    impressionist(@post) 
+    impressionist(@post)
   end
 
   def edit
@@ -48,6 +48,25 @@ class PostsController < ApplicationController
     @post.destroy
     redirect_to account_posts_path, alert: "Post deleted"
   end
+
+  def upvote
+    @post = Post.find(params[:id])
+
+     if !current_user.is_voter_of?(@post)
+       current_user.upvote!(@post)
+     end
+
+     redirect_to :back
+   end
+
+   def downvote
+     @post = Post.find(params[:id])
+
+     if current_user.is_voter_of?(@post)
+       current_user.downvote!(@post)
+     end
+     redirect_to :back
+   end
 
 
   private
