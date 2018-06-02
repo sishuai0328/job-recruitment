@@ -40,7 +40,7 @@ class Admin::JobsController < ApplicationController
       if @category == '所有类型'
         @jobs = Job.where(:user => current_user).recent.paginate(:page => params[:page], :per_page => 10)
       else
-        @jobs = Job.where(:user => current_user, :location_id => @location_id).recent.paginate(:page => params[:page], :per_page => 10)
+        @jobs = Job.where(:user => current_user, :category => @category_id).recent.paginate(:page => params[:page], :per_page => 10)
       end
 
     # 判断是否筛选薪水 #
