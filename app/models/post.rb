@@ -6,6 +6,8 @@ class Post < ApplicationRecord
   belongs_to :group
   has_many :votes
   has_many :voters, through: :votes, source: :user
+  # 留言
+  has_many :comments
 
   # 重构重复代码／最近排序
   scope :recent, -> { order('created_at DESC') }

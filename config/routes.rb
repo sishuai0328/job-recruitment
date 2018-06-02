@@ -53,6 +53,7 @@ Rails.application.routes.draw do
         post :upvote
         post :downvote
       end
+      resources :comments
     end
   end
 

@@ -19,6 +19,9 @@ class User < ApplicationRecord
   has_many :job_favorites
   has_many :favorite_jobs, through: :job_favorites, source: :job
 
+  #留言
+  # has_many :comments
+
   # 是否为管理员
   # 判断数据库中的管理员栏位的布尔值
   def admin?

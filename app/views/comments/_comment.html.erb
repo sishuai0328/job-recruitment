@@ -1,0 +1,15 @@
+<div class="box">
+  <article class="media">
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong><%= comment.user.username %>:</strong>
+          <%= comment.comment %>
+          <% if current_user == comment.user %>
+          <%= link_to '删除', group_post_comment_path(comment.post, comment),method: :delete, class: "btn btn-danger btn-xs pull-right", data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  </article>
+</div>

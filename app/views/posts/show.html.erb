@@ -1,6 +1,6 @@
 <div class="post-container">
   <h1> <%= @post.title %> </h1>
-  <span class="pull-left">
+  <span>
     <% if current_user && current_user.is_voter_of?(@post) %>
       <%= link_to("", downvote_group_post_path(@post), method: :post, class: "fa fa-heart fa-2x", style: "color:red;") %>
      <% else %>
@@ -14,7 +14,17 @@
   </p>
 </div>
 
-
+<section class="section comments">
+    <div class="container">
+        <h2 class="subtitle is-5" style="text-align:center"><strong><%= @post.comments.count %></strong> 条留言</h2>
+        <%= render @post.comments %>
+        <div class="comment-form">
+            <hr />
+            <h3 class="subtitle is-3" style="text-align:center">发表留言</h3>
+            <%= render 'comments/from' %>
+        </div>
+    </div>
+</section>
 <!--
 <h1> <%= @post.title %> </h1>
 
