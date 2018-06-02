@@ -1,17 +1,19 @@
 <div class="post-container">
   <h1> <%= @post.title %> </h1>
-  <span>
-    <% if current_user && current_user.is_voter_of?(@post) %>
-      <%= link_to("", downvote_group_post_path(@post), method: :post, class: "fa fa-heart fa-2x", style: "color:red;") %>
-     <% else %>
-      <%= link_to("", upvote_group_post_path(@post), method: :post, class: "fa fa-heart-o fa-2x") %>
-    <% end %>
-  </span>
+  <span style="font-size:15px;color:gray;"><%= @post.created_at.strftime('%Y-%m-%d')%></span>
+  <span style="font-size:15px;margin-left:15px">作者：</span><a style="font_size:13px"><%= @post.user.username %></a>
   <p>
     <div class="markdown">
       <%= markdown(@post.content) %>
     </div>
   </p>
+  <span style="position: absolute;bottom: 20px;left: 48%">
+    <% if current_user && current_user.is_voter_of?(@post) %>
+      <%= link_to("", downvote_group_post_path(@post), method: :post, class: "fa fa-thumbs-up fa-3x", style: "color:red;") %>
+     <% else %>
+      <%= link_to("", upvote_group_post_path(@post), method: :post, class: "fa fa-thumbs-up fa-3x", style: "color:grey;") %>
+    <% end %>
+  </span>
 </div>
 
 <section class="section comments">
@@ -19,7 +21,7 @@
         <h2 class="subtitle is-5" style="text-align:center"><strong><%= @post.comments.count %></strong> 条留言</h2>
         <%= render @post.comments %>
         <div class="comment-form">
-            <hr />
+          <br>
             <h3 class="subtitle is-3" style="text-align:center">发表留言</h3>
             <%= render 'comments/from' %>
         </div>

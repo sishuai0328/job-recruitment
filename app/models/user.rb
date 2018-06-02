@@ -22,6 +22,10 @@ class User < ApplicationRecord
   #留言
   # has_many :comments
 
+  #点赞
+  has_many :likes
+  has_many :liked_comments, :through => :likes, :source => :comment
+
   # 是否为管理员
   # 判断数据库中的管理员栏位的布尔值
   def admin?
@@ -80,6 +84,21 @@ class User < ApplicationRecord
   # 取消点赞
   def downvote!(post)
     voted_posts.delete(post)
+  end
+
+  # 是否喜欢过
+  def is_liker_of?(comment)
+  liked_comments.include?(comment)
+  end
+
+  # 点赞
+  def like!(comment)
+    liked_comments << comment
+  end
+
+  # 取消点赞
+  def unlike!(comment)
+    liked_comments.delete(comment)
   end
 
 end
