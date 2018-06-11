@@ -1,6 +1,6 @@
 <div class="post-container">
   <h1> <%= @post.title %> </h1>
-  <span style="font-size:15px;color:gray;"><%= @post.created_at.strftime('%Y-%m-%d')%></span>
+  <span style="font-size:15px;color:gray;"><%= @post.created_at.strftime('%Y-%m-%d %H:%M:%S')%></span>
   <span style="font-size:15px;margin-left:15px">作者：</span><a style="font_size:13px"><%= @post.user.username %></a>
   <p>
     <div class="markdown">

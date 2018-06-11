@@ -26,6 +26,7 @@ before_action :authenticate_user!, :only => [:new, :create, :destroy, :like, :un
   def like
    @comment = Comment.find(params[:post_id])
    @comment.post = @post
+   @group = @post.group
     if !current_user.is_liker_of?(@comment)
       current_user.like!(@comment)
     end
@@ -36,6 +37,7 @@ before_action :authenticate_user!, :only => [:new, :create, :destroy, :like, :un
   def unlike
     @comment = Comment.find(params[:post_id])
     @comment.post = @post
+    @group = @post.group
     if current_user.is_liker_of?(@comment)
       current_user.unlike!(@comment)
     end
