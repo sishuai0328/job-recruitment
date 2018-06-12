@@ -76,7 +76,7 @@ class JobsController < ApplicationController
   end
 
   def show
-    @job = Job.find(params[:id])
+    @job = Job.find_by_friendly_id!(params[:id])
     @category = @job.category
 
     # 随机推荐五个相同类型的职位（去除当前职位） #

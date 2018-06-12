@@ -8,7 +8,7 @@ class Admin::JobsController < ApplicationController
   layout "admin"
 
   def show
-    @job = Job.find(params[:id])
+    @job = Job.find_by_friendly_id!(params[:id])
   end
 
   # def index
@@ -77,13 +77,13 @@ class Admin::JobsController < ApplicationController
   end
 
   def edit
-    @job = Job.find(params[:id])
+    @job = Job.find_by_friendly_id!(params[:id])
     @categorys = Category.all
     @locations = Location.all
   end
 
   def update
-    @job = Job.find(params[:id])
+    @job = Job.find_by_friendly_id!(params[:id])
     if @job.update(job_params)
       redirect_to admin_jobs_path, notice: '职位修改成功。'
     else
@@ -92,7 +92,7 @@ class Admin::JobsController < ApplicationController
   end
 
   def destroy
-    @job = Job.find(params[:id])
+    @job = Job.find_by_friendly_id!(params[:id])
 
     @job.destroy
 
@@ -100,14 +100,14 @@ class Admin::JobsController < ApplicationController
   end
 
  def publish
-    @job = Job.find(params[:id])
+    @job = Job.find_by_friendly_id!(params[:id])
     @job.publish!
 
     redirect_to :back
   end
 
   def hide
-    @job = Job.find(params[:id])
+    @job = Job.find_by_friendly_id!(params[:id])
 
     @job.hide!
 
