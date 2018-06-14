@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/*===== 首页开始 ====*/
+
+.jumbotron {  background-image:url("h3.jpg");  background-repeat: no-repeat;  background-size: cover;  padding-bottom: 110px;}.title {  font-family: "Helvetica Neue", "Microsoft Yahei", 微软雅黑;  text-align: center;  margin-top: 200px;  margin-bottom: 80px;}.slogan {  margin-top: 10px;  margin-bottom: 50px;  text-align: center;  color: white;  top: 12px;}.lead {  margin-bottom: 60px;  text-align: center;  color: white;}/*===== 首页结束 ====*/
 
 /*===== footer ====*/
 .footer{
@@ -10,8 +13,6 @@
     background-color: #002E2E;
     padding: 15px 0;
     color: #fff;
-    margin-top: 800px;
-
     h4{
         font-size: 16px;
         margin-top: 25px;
@@ -90,5 +91,6 @@
   }
 
 }
+
 
 /*===== footer ====*/
