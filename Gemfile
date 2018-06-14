@@ -55,6 +55,7 @@ gem 'carrierwave'
 
 # 分页功能
 gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 # 图标功能
 gem 'font-awesome-sass', '~> 5.0.6'

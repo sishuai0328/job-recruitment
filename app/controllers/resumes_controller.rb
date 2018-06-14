@@ -3,12 +3,12 @@ class ResumesController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @job = Job.find(params[:job_id])
+    @job = Job.find_by_friendly_id!(params[:job_id])
     @resume = Resume.new
   end
 
   def create
-    @job = Job.find(params[:job_id])
+    @job = Job.find_by_friendly_id!(params[:job_id])
     @resume = Resume.new(resume_params)
     @resume.job = @job
     @resume.user = current_user

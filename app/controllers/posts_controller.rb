@@ -49,11 +49,29 @@ class PostsController < ApplicationController
     redirect_to account_posts_path, alert: "Post deleted"
   end
 
-  def upvote
-    @post = Post.find(params[:id])
+  # def upvote
+  #   @post = Post.find(params[:id])
+  #
+  #    if !current_user.is_voter_of?(@post)
+  #      current_user.upvote!(@post)
+  #    end
+  #
+  #    redirect_to :back
+  #  end
+  #
+  #  def downvote
+  #    @post = Post.find(params[:id])
+  #
+  #    if current_user.is_voter_of?(@post)
+  #      current_user.downvote!(@post)
+  #    end
+  #    redirect_to :back
+  #  end
 
-     if !current_user.is_voter_of?(@post)
-       current_user.upvote!(@post)
+   def upvote
+     @post = Post.find(params[:id])
+     unless @post.find_vote(current_user)  # 如果已经按讚过了，就略过不再新增
+       Vote.create( :user => current_user, :post => @post)
      end
 
      redirect_to :back
@@ -61,12 +79,12 @@ class PostsController < ApplicationController
 
    def downvote
      @post = Post.find(params[:id])
+     vote = @post.find_vote(current_user)
+     vote.destroy
 
-     if current_user.is_voter_of?(@post)
-       current_user.downvote!(@post)
-     end
      redirect_to :back
    end
+
 
 
   private

@@ -143,7 +143,7 @@ class JobsController < ApplicationController
   # end
 
   def favorites
-    @job = Job.find(params[:id])
+    @job = Job.find_by_friendly_id!(params[:id])
     if !current_user.is_favorite_of?(@job)
       current_user.favorite!(@job)
       flash[:notice] = "收藏成功，可以到我收藏的工作中查看。"
@@ -154,7 +154,7 @@ class JobsController < ApplicationController
   end
 
   def unfavorite
-   @job = Job.find(params[:id])
+   @job = Job.find_by_friendly_id!(params[:id])
    if current_user.is_favorite_of?(@job)
      current_user.unfavorite!(@job)
      flash[:notice] = "已取消收藏"

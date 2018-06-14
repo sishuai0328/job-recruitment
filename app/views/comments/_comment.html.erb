@@ -5,11 +5,20 @@
         <p>
           <strong style="color:blue"><%= comment.user.username %>:</strong>
           <%= comment.comment %>
+          <span class="pull-right">
+          <% if current_user && current_user.is_liker_of?(comment) %>
+            <%= link_to("", unlike_comment_path(comment), method: :post, class: "fa fa-heart fa-1x", style: "color:red;") %>
+           <% else %>
+            <%= link_to("", like_comment_path(comment), method: :post, class: "fa fa-heart fa-1x", style: "color:grey;") %>
+          <% end %>
+          <%= comment.likers.count %>
+          </span>
+        </p>
+        <span style="font-size:12px;color:gray;"><%= comment.created_at.strftime('%Y-%m-%d %H:%M:%S') %>
           <% if current_user == comment.user %>
           <%= link_to '删除', group_post_comment_path(comment.post, comment),method: :delete, class: "btn btn-danger btn-xs pull-right", data: { confirm: 'Are you sure?' } %>
           <% end %>
-        </p>
-        <span style="font-size:12px;color:gray;"><%= comment.created_at.strftime('%Y-%m-%d %H:%M:%S') %>
+        </span>
       </div>
     </div>
   </article>

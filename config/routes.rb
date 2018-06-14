@@ -49,19 +49,36 @@ Rails.application.routes.draw do
       post :quit
     end
     resources :posts do
-      member do
-        post :upvote
-        post :downvote
-      end
+      # member do
+        # post :upvote
+        # post :downvote
+      #   post "upvote" => "posts#upvote"
+      #   post "downvote" => "posts#downvote"
+      # end
       resources :comments do
-        member do
-          post :like
-          post :unlike
-        end
+        # member do
+        #   post :like
+        #   post :unlike
+        # end
       end
     end
   end
 
+  resources :posts do
+    member do
+      # post :upvote
+      # post :downvote
+      post "upvote" => "posts#upvote"
+      post "downvote" => "posts#downvote"
+    end
+  end
+
+  resources :comments do
+    member do
+      post :like
+      post :unlike
+    end
+  end
 
   root 'welcome#index'
 end

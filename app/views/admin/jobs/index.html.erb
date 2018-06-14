@@ -227,4 +227,9 @@
       <% end %>
   </table>
   </div>
+  <div class="col-md-12 job-bottom">
+    <div class="text-center">
+      <%= will_paginate @jobs, renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
 </div>

@@ -46,11 +46,11 @@ class Admin::JobsController < ApplicationController
     # 判断是否筛选薪水 #
     elsif @jobs = case params[:order]
         when 'by_lower_bound'
-          Job.where(:user => current_user).order('wage_lower_bound DESC')
+          Job.where(:user => current_user).order('wage_lower_bound DESC').paginate(:page => params[:page], :per_page => 10)
         when 'by_upper_bound'
-          Job.where(:user => current_user).order('wage_upper_bound DESC')
+          Job.where(:user => current_user).order('wage_upper_bound DESC').paginate(:page => params[:page], :per_page => 10)
         else
-          Job.where(:user => current_user).recent
+          Job.where(:user => current_user).recent.paginate(:page => params[:page], :per_page => 10)
     end
 
     # 预设显示所有公开职位 #

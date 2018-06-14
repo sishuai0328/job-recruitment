@@ -8,7 +8,8 @@ class User < ApplicationRecord
   has_many :groups
   has_many :posts
   has_many :jobs
-  has_many :votes
+  # has_many :votes
+  has_many :votes, :dependent => :destroy
   has_many :voted_posts, :through => :votes, :source => :post
 
   # 参与讨论组
@@ -72,19 +73,19 @@ class User < ApplicationRecord
   end
 
   # 是否点赞过
-  def is_voter_of?(post)
-   voted_posts.include?(post)
-  end
+  # def is_voter_of?(post)
+  #  voted_posts.include?(post)
+  # end
 
   # 点赞
-  def upvote!(post)
-    voted_posts << post
-  end
+  # def upvote!(post)
+  #   voted_posts << post
+  # end
 
   # 取消点赞
-  def downvote!(post)
-    voted_posts.delete(post)
-  end
+  # def downvote!(post)
+  #   voted_posts.delete(post)
+  # end
 
   # 是否喜欢过
   def is_liker_of?(comment)
