@@ -2,7 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
+#mygroup .box1{
+  width:100px;
+  height:100px;
+  float:left;
+  margin-right:20px;
+}
 
 #mygroup{
 }
@@ -19,8 +24,11 @@
 }
 
 #mygroup  .media {
-  border: 1px solid #ccc;
+  border:1px solid #ccc;
   padding: 10px;
+  border: 1.5px solid #ddd;
+  box-shadow: 1px 1px 5px #ccc;
+  margin-top: 20px;
 }
 
 #mygroup  .icon {

@@ -46,19 +46,21 @@
     <div class="row">
     <% if @groups.length > 0 %>
     <% @groups.each do |group| %>
-    <div class="group-list col-md-8 col-md-offset-2">
-      <div class="media">
-        <a href="#" class="pull-left"><%= link_to image_tag(group.avatar.url(:big)), group_path(group), :target => "_blank" %></a>
-        <div class="media-body">
-          <h4 class="media-heading"><%= link_to(group.title, group_path(group)) %></h4>
-          <%= render_group_description(group) %>
+      <div class="groups-list col-md-8 col-md-offset-2">
+        <div class="media">
+        <div class='box1'>
+            <a class="pull-left"><%= link_to image_tag(group.avatar.url(:big)), group_path(group), :target => "_blank" %></a>
         </div>
-        <div class="icon">
-          <a href="#" class="heart icon"> <i class="fa fa-user"></i> <span class="badge"><%= group.group_relationships.count %></span></a>
-          <a href="#" class="star icon"> <i class="fa fa-file"></i> <span class="badge"><%= group.posts.count %></span></a>
+          <div class="media-body">
+            <h4 class="media-heading"><%= link_to(group.title, group_path(group)) %></h4>
+            <%= render_group_description(group) %>
+          </div>
+          <div class="icon">
+            <a class="heart icon" style="color:orange;font-size:20px;margin-right:10px"> <i class="fa fa-user-circle"></i> <span style="font-size:15px;color:#999"><%= group.group_relationships.count %></span></a>
+            <a class="star icon" style="color:orange;font-size:18px;"> <i class="fa fa-file"></i> <span style="font-size:15px;color:#999"><%= group.posts.count %></span></a>
+          </div>
         </div>
-      </div>
-    </div>
+        </div>
     <% end %>
     <% else %>
     <div class="col-md-8 col-md-offset-2 no-job-data">

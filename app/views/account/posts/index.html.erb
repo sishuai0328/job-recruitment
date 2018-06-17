@@ -40,22 +40,24 @@
   <% @posts.each do |post| %>
   <div class="col-md-10 col-md-offset-1">
     <div class="thumbnail">
-      <div class="caption">
+      <div class="caption" style="font-size:18px">
         <h3><%= link_to(post.title, group_post_path(post.group, post)) %></h3>
-        <p>
+        <p style="color:grey;font-size:13px">
+          <a class="star icon" style="font-size:20px;color:#616161"> <i class="fa fa-globe"></i></a>
+            <span style="font-size:15px;color:#1E88E5"><%= link_to(post.group.title, group_path(post.group, post)) %></span>
           作者：<span class="author"><%= post.user.username %></span>
           时间：<span class="time"><%= post.created_at.strftime('%Y-%m-%d %H:%M:%S')%></span>
         </p>
         <p><%= truncate(strip_tags(raw(post.content)),:length=>60) %></p>
         <p>
-          <a href="#" class="heart icon"> <i class="fa fa-eye"></i>
-            <span class="badge"><%= "#{post.impressionist_count(:filter=>:session_hash)}" %></span>
+          <a class="heart icon" style="color:grey"> <i class="fa fa-eye"></i>
+            <span><%= "#{post.impressionist_count(:filter=>:session_hash)}" %></span>
           </a>
-          <a href="#" class="apple icon"> <i class="fa fa-thumbs-up"></i>
-            <span class="badge"><%= post.voters.count %></span>
+          <a class="apple icon" style="color:grey"> <i class="fa fa-thumbs-up"></i>
+            <span><%= post.voters.count %></span>
           </a>
-          <a href="#" class="star icon"> <i class="fa fa-heart"></i>
-            <span class="badge"><%= post.comments.count %></span>
+          <a class="star icon" style="color:grey"> <i class="fa fa-heart"></i>
+            <span><%= post.comments.count %></span>
           </a>
         </p>
       </div>
