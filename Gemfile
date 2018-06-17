@@ -73,6 +73,9 @@ gem 'impressionist'
 gem 'redcarpet'
 gem 'rouge'
 
+# 截取显示
+gem 'truncate_html', '0.9.2 '
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

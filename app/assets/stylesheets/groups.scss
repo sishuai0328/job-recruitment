@@ -1,3 +1,131 @@
 // Place all the styles related to the groups controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#groups-list .box1{
+  width:100px;
+  height:100px;
+  float:left;
+  margin-right:20px
+}
+
+#groups-list .group{
+
+
+}
+
+#groups-list .groups-list{
+  margin-top: 30px;
+}
+
+#groups-list .container{
+
+}
+
+#groups-list .span6 {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+// .container{
+  // height: 500px;
+// }
+#groups-list .media{
+  border:1px solid #ccc;
+  padding: 10px;
+  border: 1.5px solid #ddd;
+  box-shadow: 1px 1px 5px #ccc
+}
+
+// #groups-list .box1{
+//   background-color: red;
+//   width: 110px;
+//   height: 110px;
+// }
+//
+// #groups-list .box1 .pull-left{
+//   margin-left: 5px;
+//   top: 5
+// }
+#groups-list .icon{
+  margin-right: 10px;
+}
+#groups-list .media-object{
+  height: 100px;
+}
+#groups-list .media-heading{
+  margin-bottom: 10px;
+}
+#groups-list .media-body{
+  margin-bottom: 10px;
+}
+// h2{
+//   background-color: skyblue;
+// }
+
+#group-show .box1{
+  width:100px;
+  height:100px;
+  float:left;
+  margin-right:20px
+}
+#group-show{
+}
+#group-show .group-show{
+  margin-top: 30px;
+}
+
+#group-show .span6 {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+#group-show  .media {
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #E9EBF0;
+  border: 1.5px solid #ddd;
+  box-shadow: 1px 1px 5px #ccc
+}
+
+#group-show  .icon {
+  margin-right: 10px;
+}
+
+#group-show  .media-object {
+  height: 100px;
+}
+
+#group-show .media-heading {
+  margin-bottom: 10px;
+}
+
+#group-show .media-body {
+  margin-bottom: 10px;
+}
+
+h2 {
+  // background-color: skyblue;
+}
+#group-show .email{
+  margin-bottom: 20px;
+}
+#group-show .caption{
+  border: 1px 0 1px 0 solid #ccc;
+  padding: 10px;
+}
+
+#group-show .thumbnail{
+  border: 1px 0 1px 0 solid #ccc;
+}
+#group-show .btn-default{
+  // margin: 0 20px;
+}
+#group-show .font{
+  font-size: 13px;
+  color: #000;
+}
+#group-show .update{
+  display: inline-block;
+  float: right;
+  margin-right: 10px;
+
+}

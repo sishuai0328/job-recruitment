@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.main{
+  min-height: 700px;
+}
 
 // ===管理界面表格样式===
 .custab{
@@ -103,9 +106,10 @@
   }
 
   .job-setup{
+    min-height: 1020px;
     background: #fafafa;
     margin-top: 50px;
-    margin-bottom: 100px;
+    margin-bottom: 150px;
     padding-top: 20px;
     padding-bottom: 20px;
     box-shadow: 1px 3px 5px #333;
@@ -208,12 +212,12 @@
   margin-bottom: 50px;
 
 
-
   .title-box{
     .title{
       margin-left: 35%;
       display: inline;
       float: left;
+      margin-top: 25px;
 
     }
     .title h2{

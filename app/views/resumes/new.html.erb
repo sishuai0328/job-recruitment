@@ -29,8 +29,8 @@
       <%= f.input :content, :label => false, placeholder: '请输入简历描述', input_html: { class: 'resume-content' }  %>
       <%= f.input :attachment, label: '上传简历', input_html: { class: 'resume-attachment' }  %>
     </div>
-    <div class="form-actions-resume">
-      <%= f.submit "立即投递", disable_with: "Submiting...", class: "button"%>
+    <div class="form-actions-resume"style="margin-bottom:50px">
+      <%= f.button :submit, '投递', class: "btn btn-primary col-md-2", style: "margin-bottom:50px" %>
     </div>
   <% end %>
   </div>

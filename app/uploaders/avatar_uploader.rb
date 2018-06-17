@@ -32,7 +32,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
     end
 
     version :big do
-      process :resize_to_fill => [120, 120]
+      process :resize_to_fill => [100, 100]
     end
 
     #指定上传文件的格式

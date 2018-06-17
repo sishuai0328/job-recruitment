@@ -96,7 +96,7 @@ class Admin::JobsController < ApplicationController
 
     @job.destroy
 
-    redirect_to admin_jobs_path
+    redirect_to admin_jobs_path, notice: '职位已删除。'
   end
 
  def publish

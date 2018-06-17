@@ -1,3 +1,4 @@
+<!-- <% if @groups.length > 0 %>
 <div class="col-md-12">
   <div class="group">
     <%= link_to("New group", new_group_path, class: "btn btn-primary pull-right") %>
@@ -18,10 +19,55 @@
     </tbody>
   </table>
 </div>
+<% else %> -->
+<!--=== 没有职位资料 ===-->
+    <!-- <div class="col-md-8 col-md-offset-2 no-job-data">
+      <h2 style="border-color:white">暂时无人创建讨论版块，你可以成为第一个吃螃蟹的人。</h2>
+      <p><%= link_to("立即创建", new_group_path, class: "btn btn-lg btn-success") %></p>
+    </div>
+<% end %> -->
 
 <!--=== 分页区块 ===-->
-<div class="col-md-10 col-md-offset-1 job-bottom">
+<!-- <div class="col-md-10 col-md-offset-1 job-bottom">
   <div class="text-center">
     <%= will_paginate @groups, renderer: BootstrapPagination::Rails %>
   </div>
+</div> -->
+<div id="groups-list">
+<div class="container-fluid groups-list">
+  <div class="container">
+    <div class="row">
+      <div class="group col-md-8 col-md-offset-2">
+        <p>
+        <h1 class="pull-left" style="margin-top:0px">讨论列表</h1>
+        <%= link_to("创建讨论", new_group_path, class: "btn btn-primary pull-right") %>
+      </p>
+      </div>
+    <% @groups.each do |group| %>
+    <div class="groups-list col-md-8 col-md-offset-2">
+      <div class="media">
+      <div class='box1'>
+          <a class="pull-left"><%= link_to image_tag(group.avatar.url(:big)), group_path(group), :target => "_blank" %></a>
+      </div>
+
+
+        <div class="media-body">
+          <h4 class="media-heading"><%= link_to(group.title, group_path(group)) %></h4>
+          <%= render_group_description(group) %>
+        </div>
+        <div class="icon">
+          <a class="heart icon" style="color:orange;font-size:20px;margin-right:10px"> <i class="fa fa-user-circle"></i> <span style="font-size:15px;color:#999"><%= group.group_relationships.count %></span></a>
+          <a class="star icon" style="color:orange;font-size:18px;"> <i class="fa fa-file"></i> <span style="font-size:15px;color:#999"><%= group.posts.count %></span></a>
+        </div>
+      </div>
+
+      </div>
+
+
+
+
+    <% end %>
+  </div>
+  </div>
+</div>
 </div>

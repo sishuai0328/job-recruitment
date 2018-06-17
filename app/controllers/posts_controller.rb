@@ -8,6 +8,16 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+  # def new
+  #   @group = Group.find(params[:group_id])
+  #   if current_user.is_member_of?(@group)
+  #     @post = Post.new
+  #   else
+  #     flash[:warning] = "你需要先加入群租"
+  #   end
+  #
+  # end
+
   # 检索相关文章并显示，本质是posts和groups数据库映射
   def show
     @post = Post.find(params[:group_id])
@@ -23,7 +33,7 @@ class PostsController < ApplicationController
   def update
 
     if @post.update(post_params)
-      redirect_to account_posts_path, notice: "Update Success"
+      redirect_to account_posts_path, notice: "文章修改成功。"
     else
       render :edit
     end
@@ -46,7 +56,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.group = @group
     @post.destroy
-    redirect_to account_posts_path, alert: "Post deleted"
+    redirect_to account_posts_path, alert: "文章已删除，且不可恢复！"
   end
 
   # def upvote

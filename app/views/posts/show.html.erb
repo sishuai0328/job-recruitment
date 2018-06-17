@@ -18,11 +18,11 @@
 
 <section class="section comments">
     <div class="container">
-        <h2 class="subtitle is-5" style="text-align:center"><strong><%= @post.comments.count %></strong> 条留言</h2>
+        <h2 class="subtitle is-5" style="text-align:center;border-color:white"><strong><%= @post.comments.count %></strong> 条留言</h2>
         <%= render @post.comments %>
         <div class="comment-form">
           <br>
-            <h3 class="subtitle is-3" style="text-align:center">发表留言</h3>
+
             <%= render 'comments/from' %>
         </div>
     </div>

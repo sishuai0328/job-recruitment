@@ -13,14 +13,14 @@ before_action :authenticate_user!, :only => [:new, :create, :destroy, :like, :un
     @comment = @post.comments.create(params[:comment].permit(:name, :comment))
     @comment.user = current_user
     @comment.save
-    redirect_to :back
+    redirect_to :back, alert: "留言发布成功"
   end
 
   def destroy
     @comment = Comment.find(params[:post_id])
     @comment.post = @post
     @comment.destroy
-    redirect_to :back
+    redirect_to :back, alert: "留言已删除"
   end
 
   def like

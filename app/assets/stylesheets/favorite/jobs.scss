@@ -1,3 +1,126 @@
 // Place all the styles related to the favorite/jobs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#myjob{
+
+}
+
+#myjob .job-content{
+  min-height: 725px;
+  margin-top: 50px;
+
+  a{
+    text-decoration: none;
+  }
+}
+
+#myjob .job-bottom{
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+#myjob .job-limit-box{
+  min-height: 350px;
+  margin-top: 200px;
+}
+
+.job-resume-box{
+  min-height: 475px;
+  margin-top: 125px;
+
+  h3{
+    text-align: center;
+  }
+}
+
+.side-box{
+  display: inline;
+  position: absolute;
+  margin-top: 15px;
+  margin-left: 35px;
+  padding-bottom: 12.5px;
+  min-width: 260px;
+
+  background-color: #1A6561;
+  color: #fff;
+  box-shadow: 2px 2px 3px #aaa;
+}
+
+
+#myjob .job-box{
+  border: 1.5px solid #ddd;
+  box-shadow: 1px 1px 5px #ccc;
+  margin-top: 12.5px;
+  padding: 15px 1px 1px 1px;
+  background-color: #fff;
+  color: #555;
+  font-size: 16px;
+  font-family: "Hiragino Sans GB","Microsoft Yahei",SimSun,Arial,"Helvetica Neue",Helvetica;
+
+  div{
+    margin-bottom: 5px;
+  }
+
+  .info{
+      display: inline;
+      float: left;
+      min-width: 65%;
+  }
+
+  .info-top{
+    h3{
+      display: inline;
+      font-size: 20px;
+    }
+    span{
+      margin-left: 10px;
+      display: inline;
+      color: #888;
+    }
+  }
+
+  .info-mid{
+    color: #FF7D0A;
+    letter-spacing: -1px;
+  }
+
+  .info-bot{
+    .category{
+      border: 1px solid #ccc;
+      border-radius: 2.5px;
+      padding: 5px 7.5px 5px 7.5px;
+      font-size: 12px;
+    }
+  }
+
+  .company{
+    float: left;
+    display: inline;
+    max-width: 35%;
+
+    span{
+      width: 20px;
+      margin-left: 5px;
+    }
+  }
+
+  .company-top{
+    color: #4A6BB5;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    margin-left: -5px;
+  }
+
+  // .company-mid{
+  //   color: #4A6BB5;
+  //   font-size: 14px;
+  //   letter-spacing: 0.5px;
+  //   margin-left: -5px;
+  // }
+
+  .company-bot{
+    margin-left: 3.5px;
+    letter-spacing: 1px;
+  }
+}

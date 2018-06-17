@@ -84,7 +84,7 @@ class JobsController < ApplicationController
     # 搜索该用户投递此职位的简历数量 #
     @resumes = Resume.where(:job => @job, :user => current_user)
     if @job.is_hidden
-      redirect_to root_path, alert: "此职缺暂未开放。"
+      redirect_to root_path, alert: "此职位暂未开放。"
     end
   end
 

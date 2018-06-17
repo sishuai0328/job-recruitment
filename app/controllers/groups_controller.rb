@@ -37,7 +37,7 @@ class GroupsController < ApplicationController
   def update
 
     if @group.update(group_params)
-      redirect_to groups_path, notice: "Update Success"
+      redirect_to groups_path, notice: "讨论版块修改成功。"
     else
       render :edit
     end
@@ -46,7 +46,7 @@ class GroupsController < ApplicationController
   def destroy
 
     @group.destroy
-    redirect_to groups_path, alert: "Group deleted"
+    redirect_to groups_path, alert: "讨论版块已删除，且不可恢复！"
   end
 
   def join
@@ -69,7 +69,7 @@ class GroupsController < ApplicationController
       current_user.quit!(@group)
       flash[:alert] = "已退出本讨论版！"
     else
-      flash[:warning] = "你不是本讨论版成员，怎么退出 XD"
+      flash[:warning] = "你不是本讨论版成员，怎么退出"
     end
 
     redirect_to group_path(@group)

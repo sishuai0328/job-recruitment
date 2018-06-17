@@ -1,53 +1,53 @@
 <% if @job_favorites.length > 0 %>
-<div class="col-md-10 col-md-offset-1 page-title">
-  <h1><span class="fa fa-gift"></span> 我收藏的职位</h1>
-</div>
-<div class="col-md-10 col-md-offset-1 job-content">
-  <div class="main-box">
-  <% @job_favorites.each do |job_favorite| %>
-  <div class="col-md-9 col-xs-12 job-box">
-    <!--=== 职位信息 ===-->
-    <div class="col-md-6 col-xs-12 info">
-      <div class="info-top">
-        <h3><%= link_to(job_favorite.job.title, job_path(job_favorite.job), target: "_blank" )%></h3>
-        <% if job_favorite.job.is_hidden %>
-          <span>（职位已下线）</span>
-        <% else %>
-          <span><%= job_favorite.job.created_at.strftime("%Y-%m-%d") %></span>
-        <% end %>
+  <div class="col-md-10 col-md-offset-1 page-title">
+    <h1><span class="fa fa-gift"></span> 我收藏的职位</h1>
+  </div>
+  <div class="col-md-10 col-md-offset-1 job-content">
+    <div class="main-box">
+    <% @job_favorites.each do |job_favorite| %>
+    <div class="col-md-9 col-xs-12 job-box">
+      <!--=== 职位信息 ===-->
+      <div class="col-md-6 col-xs-12 info">
+        <div class="info-top">
+          <h3><%= link_to(job_favorite.job.title, job_path(job_favorite.job), target: "_blank" )%></h3>
+          <% if job_favorite.job.is_hidden %>
+            <span>（职位已下线）</span>
+          <% else %>
+            <span><%= job_favorite.job.created_at.strftime("%Y-%m-%d") %></span>
+          <% end %>
+        </div>
+        <div class="info-mid">
+          <%= job_favorite.job.wage_lower_bound %> k ~ <%= job_favorite.job.wage_upper_bound %> k
+        </div>
+        <div class="info-bot">
+          <span class="category"><span class="<%= job_favorite.job.category.icon %>"> <%= job_favorite.job.category.name %></span>
+        </div>
       </div>
-      <div class="info-mid">
-        <%= job_favorite.job.wage_lower_bound %> k ~ <%= job_favorite.job.wage_upper_bound %> k
-      </div>
-      <div class="info-bot">
-        <span class="category"><span class="<%= job_favorite.job.category.icon %>"> <%= job_favorite.job.category.name %></span>
-      </div>
-    </div>
 
-    <!--=== 公司信息 ===-->
-    <div class="col-md-6 col-xs-12 company">
-      <div class="company-top">
-        <span><%= job_favorite.job.company %></span>
-        <% if current_user && current_user.is_favorite_of?(job_favorite.job) %>
-          <%= link_to unfavorite_job_path(job_favorite.job), method: :post do %><i class="fa fa-star" aria-hidden="true"></i><% end %>
-        <% else %>
-          <%= link_to favorites_job_path(job_favorite.job), method: :post do %><i class="fa fa-star-o" aria-hidden="true"></i><% end %>
-        <% end %>
-      </div>
-      <div class="company-mid">
-        <span class="fa fa-envelope"></span><span><%= job_favorite.job.contact_email %></span>
-      </div>
-      <div class="company-bot">
-        <span class="fa fa-map-marker"></span><span><%= job_favorite.job.location.name %></span>
+      <!--=== 公司信息 ===-->
+      <div class="col-md-6 col-xs-12 company">
+        <div class="company-top">
+          <span><%= job_favorite.job.company %></span>
+          <% if current_user && current_user.is_favorite_of?(job_favorite.job) %>
+            <%= link_to unfavorite_job_path(job_favorite.job), method: :post do %><i class="fa fa-star" aria-hidden="true"></i><% end %>
+          <% else %>
+            <%= link_to favorites_job_path(job_favorite.job), method: :post do %><i class="fa fa-star-o" aria-hidden="true"></i><% end %>
+          <% end %>
+        </div>
+        <div class="company-mid">
+          <span class="fa fa-envelope"></span><span><%= job_favorite.job.contact_email %></span>
+        </div>
+        <div class="company-bot">
+          <span class="fa fa-map-marker"></span><span><%= job_favorite.job.location.name %></span>
+        </div>
       </div>
     </div>
+    <% end %>
+    </div>
   </div>
-  <% end %>
+  <% else %>
+  <div class="col-md-12 job-limit-box text-center">
+    <h2 style="border-color: white;">你还没收藏任何职位哦！</h2><br />
+    <p><%= link_to("立即查看工作", jobs_path, class: "btn btn-lg btn-success") %></p>
   </div>
-</div>
-<% else %>
-<div class="col-md-12 job-limit-box text-center">
-  <h2>你还没收藏任何职位哦！</h2><br />
-  <p><%= link_to("立即查看工作", jobs_path, class: "btn btn-lg btn-success") %></p>
-</div>
 <% end %>

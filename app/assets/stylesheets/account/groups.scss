@@ -1,3 +1,62 @@
 // Place all the styles related to the account/groups controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+#mygroup{
+}
+#mygroup .group-list{
+  margin-top: 20px;
+}
+
+#mygroup .container{
+  margin-top: 10px;
+}
+#mygroup .span6 {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+#mygroup  .media {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+#mygroup  .icon {
+  margin-right: 10px;
+}
+
+#mygroup .media-object {
+  height: 100px;
+}
+
+#mygroup .media-heading {
+  margin-bottom: 10px;
+}
+
+#mygroup .media-body {
+  margin-bottom: 10px;
+}
+
+h2 {
+  // background-color: skyblue;
+}
+#mygroup .email{
+  margin-bottom: 20px;
+}
+#mygroup .caption{
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+#mygroup .btn-default{
+  margin: 0 20px;
+}
+#mygroup .font{
+  font-size: 13px;
+  color: #000;
+}
+#mygroup .update{
+  display: inline-block;
+  float: right;
+}

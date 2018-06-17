@@ -2,17 +2,145 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
 /*===== 首页开始 ====*/
 
-.jumbotron {  background-image:url("h3.jpg");  background-repeat: no-repeat;  background-size: cover;  padding-bottom: 110px;}.title {  font-family: "Helvetica Neue", "Microsoft Yahei", 微软雅黑;  text-align: center;  margin-top: 200px;  margin-bottom: 80px;}.slogan {  margin-top: 10px;  margin-bottom: 50px;  text-align: center;  color: white;  top: 12px;}.lead {  margin-bottom: 60px;  text-align: center;  color: white;}/*===== 首页结束 ====*/
+.jumbotron {  background-image:url("首页1.jpg");  background-repeat: no-repeat;  background-size: cover;  padding-bottom: 110px;  border-radius: 0;//圆角为0  margin-bottom: 0 !important;}.user-flash  {  margin :  -50px  0px  21px  0px ;  //会将flash讯息往上移。}.btn.btn-info-welcome{    background-color: transparent;    color: white;    font-weight: 3px;    border-color: white;    border-width: 3px;    padding: 10px 20px;    font-size: 20px;    letter-spacing: 1px;    margin-top: 60px;    border-radius: 5px;}.btn.btn-default-welcome:hover,.btn.btn-info-welcome:hover{    background-color: transparent;    border-color: #f40;    color: #f40;}// 大图满屏显示.container-fluid .jumbotron{  padding-bottom: 110px;//内部的底部边距，这样按钮不会很靠近底部了  margin: 0 -15px 20px;//顶部margin为0，因此可以直接接着导航栏；左右margin为负15，因此可以顶到浏览器的边缘（抵消 container-fluid 的 15px 左右padding);底部margin为20，会跟下面的内容撑开距离  border-radius: 0;//圆角为0}.title {  font-family: "Helvetica Neue", "Microsoft Yahei", 微软雅黑;  text-align: center;  margin-top: 200px;  margin-bottom: 80px;}.slogan {  margin-top: 10px;  margin-bottom: 50px;  text-align: center;  color: white;  top: 12px;}.lead {  margin-bottom: 60px;  text-align: center;  color: white;}/*===== 首页结束 ====*/
+
+/*===== 热门城市 ====*/
+.litu{
+  float: none;
+  margin: 0 auto;
+}
+.litu .img-circle{
+  margin-top: 15px;
+}
+
+/*===== 热门职位开始 ====*/
+
+/* Feature与Category共用 */
+.our-experts{
+    background-color: #F2F2F2;
+    min-height: 536px;
+    p{
+      letter-spacing: 1px;
+    }
+    a{
+      text-decoration:none;
+      color: #002E2E;
+    }
+
+    img{
+      width: 550px;
+    }
+}
+/* Feature与Category共用 */
+
+.our-experts .expert-box{
+    text-align: center;
+    border: 2px solid #ccc;
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+
+    img {
+        width: 50px;
+        margin-top: 25px;
+    }
+}
+
+.our-experts .box{
+  background-color: #F2F2F2;
+  width: 100%;
+  min-height: 536px;
+}
+
+.our-experts .category-list{
+  text-align: center;
+
+  h3{
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 18px;
+  }
+  p{
+    letter-spacing: 1px;
+    color: #666;
+  }
+}
+
+.our-experts .category-list:hover{
+  .expert-box{
+    border: 2px solid #4A6BB5;
+  }
+  h3{
+    color: #4A6BB5;
+  }
+}
+
+.our-brand{
+    background-color: #F2F2F2;
+
+    img{
+      margin: 25px 15px 35px 15px;
+      width: 150px;
+    }
+
+}
+
+
+h2.section-title{
+    color: #4C4C4C;
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/*===== 热门职位结束 ====*/
+
+
+/*===== 讨论组开始 ====*/
+#support{
+    text-align: center;
+    height: 200px;
+    background: url("start.jpg") no-repeat scroll top center/ cover;
+
+}
+
+
+.btn.btn-primary-welcome{
+    background-color: transparent;
+    color: #fff;
+    border-color: #fff;
+    padding: 10px 20px;
+    font-size: 20px;
+    letter-spacing: 1px;
+    margin-top: 60px;
+}
+
+.btn.btn-default-welcome:hover,
+.btn.btn-primary-welcome:hover{
+    background-color: transparent;
+    border-color: #f40;
+    color: #f40;
+}
+/*===== 讨论组结束 ====*/
 
 /*===== footer ====*/
 .footer{
+    position: absolute;
+    margin-bottom: 0;
+    // z-index: 999;
     text-align: center;
     min-height: 250px;
+    width: 100%;
     background-color: #002E2E;
     padding: 15px 0;
     color: #fff;
+    // margin-top: 500px;
     h4{
         font-size: 16px;
         margin-top: 25px;
@@ -94,3 +222,61 @@
 
 
 /*===== footer ====*/
+
+
+/*===== user ====*/
+.user_setup{
+    height: 750px;
+    background: image_url("login4.jpg") no-repeat scroll top center/ cover;
+}
+
+.user_setup_content{
+    background: #fff;
+    margin-top: 135px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    box-shadow: 1px 3px 5px #333;
+    border: 5px solid #666;
+    border-radius: 25px;
+
+    opacity:0.95;
+    filter:alpha(opacity=95);
+
+    h2{
+      text-align: center;
+    }
+
+    .psw{
+      float: right;
+      margin-top: -33px;
+      position: relative;
+    }
+
+    .account{
+      text-align: center;
+    }
+
+    .form-inputs{
+      margin-top: 25px;
+    }
+
+    .form-actions{
+      text-align: center;
+      margin-top: 35px;
+      margin-bottom: 25px;
+
+      .button{
+        color: #fff;
+        background-color: #4A6BB5;
+        border-color: #4A6BB5;
+        font-size: 16px;
+        letter-spacing: 1px;
+        width: 100%;
+      }
+      .button:hover{
+          background-color: #4A99B5;
+          border-color: #4A99B5;
+          color: #fff;
+      }
+    }
+}

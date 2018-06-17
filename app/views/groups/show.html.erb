@@ -1,5 +1,5 @@
-<div class="col-md-12">
-  <div class="group">
+<!-- <div class="col-md-12">
+  <div class="group" style="margin-top:20px">
     <span class="pull-right">
       <% if current_user && current_user.is_member_of?(@group) %>
         <label class="label label-success"> 群组成员 </label>
@@ -9,16 +9,24 @@
             <%= link_to("Join Group", join_group_path(@group), method: :post, class: "btn btn-default") %>
       <% end %>
     </span>
-    <%= link_to("Write a Post", new_group_post_path(@group), class: "btn btn-default pull-right")%>
-    <% if current_user && current_user == @group.user %>
-      <%= link_to("Edit", edit_group_path(@group), class: "btn btn-primary pull-right")%>
-      <%= link_to("Delete", group_path(@group),    class: "btn btn-danger pull-right",
-                  method: :delete, data: { confirm: "Are you sure?" } )%>
-    <% end %>
+      <% if current_user && current_user.is_member_of?(@group) %>
+      <%= link_to("Write a Post", new_group_post_path(@group), class: "btn btn-default pull-right")%>
+      <% end %>
   </div>
-
-  <h2><%= @group.title %></h2>
+  </br>
+  <h2 style="border-color:white"><%= @group.title %>
+  <% if current_user && current_user == @group.user %>
+    <%= link_to(edit_group_path(@group), class: "btn btn-md btn-default") do %>
+      <span class="fa fa-pencil"></span>
+    <% end %>
+    <%= link_to(group_path(@group),  class: "btn btn-md btn-default", :method => :delete, :data => { :confirm => "你确定要删除改讨论版块吗？" }) do %>
+      <span class="fa fa-trash"></span>
+    <% end %>
+  <% end %>
+  </h2>
   <p><%= @group.description %></p>
+<% if @posts.length > 0 %>
+<div class="col-md-12">
    <table class="table">
      <thead>
       <tr>
@@ -44,10 +52,103 @@
      </tbody>
    </table>
 </div>
-
+<% else %> -->
+<!--=== 没有职位资料 ===-->
+    <!-- <div class="col-md-8 col-md-offset-2 no-job-data">
+      <h2 style="border-color:white">暂时无人发布，你可以成为第一个发布的人。</h2>
+      <p><%= link_to("立即创建", new_group_post_path(@group), class: "btn btn-lg btn-success") %></p>
+    </div>
+<% end %>
+</div> -->
 <!--=== 分页区块 ===-->
-<div class="col-md-10 col-md-offset-1 job-bottom">
+<!-- <div class="col-md-10 col-md-offset-1 job-bottom">
   <div class="text-center">
     <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
   </div>
+</div> -->
+<div id="group-show">
+<div class="container-fluid group-show">
+			<div class="container">
+				<div class="row">
+					<div class=" col-md-12 email">
+						<div class="media">
+							<div class="box1">
+              <a class="pull-left"><%= link_to image_tag(@group.avatar.url(:big)), group_path(@group), :target => "_blank" %></a>
+							</div>
+							<div class="media-body">
+								<h4 class="media-heading" style="font-size:22px;color:#212121"><%= link_to(@group.title, group_path(@group)) %>
+									<a>
+                    <% if current_user && current_user.is_member_of?(@group) %>
+                      <!-- <label class="label label-success"> 群组成员 </label> -->
+                          <%= link_to("退出讨论", quit_group_path(@group), method: :post, class: "btn btn-default") %>
+                    <% else %>
+                      <!-- <label class="label label-warning"> 不是群组成员 </label> -->
+                          <%= link_to("加入讨论", join_group_path(@group), method: :post, class: "btn btn-danger") %>
+                    <% end %>
+									</a>
+									<a class="heart font"> <span style="color:#aaa;font-size:12px">关注:</span>   <span style="color:#ff7f3e"><%= @group.group_relationships.count %></span></a>
+									<a class="heart font"> <span style="color:#aaa;font-size:12px">文章:</span>   <span style="color:#ff7f3e"><%= @group.posts.count %></span></a>
+	                  <% if current_user && current_user.is_member_of?(@group) %>
+	                  <%= link_to("发布文章", new_group_post_path(@group), class: "btn btn-warning pull-right") %>
+                  <% end %>
+									<div class="update">
+                    <% if current_user && current_user == @group.user %>
+                      <%= link_to(edit_group_path(@group), class: "btn btn-md btn-default") do %>
+                        <span class="fa fa-cogs"></span>
+                      <% end %>
+                      <%= link_to(group_path(@group),  class: "btn btn-md btn-default", :method => :delete, :data => { :confirm => "你确定要删除改讨论版块吗？" }) do %>
+                        <span class="fa fa-trash"></span>
+                      <% end %>
+                    <% end %>
+								</h4>
+								<span style="font-size:14px"><%= render_group_description(@group) %></span>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<!--打卡-->
+				<div class="row ">
+          <% if @posts.length > 0 %>
+          <% @posts.each do |post| %>
+					<div class="col-md-10 col-md-offset-1">
+						<div class="thumbnail">
+							<div class="caption" style="font-size:18px">
+								<h3><%= link_to(post.title, group_post_path(post)) %></h3>
+								<p style="color:grey;font-size:13px">
+									作者：<span class="author"><%= post.user.username %></span>
+									时间：<span class="time"><%= post.created_at.strftime('%Y-%m-%d %H:%M:%S')%></span>
+								</p>
+								<p><%= truncate(strip_tags(raw(post.content)),:length=>60) %></p>
+								<p>
+									<a class="heart icon" style="color:grey"> <i class="fa fa-eye"></i>
+                    <span><%= "#{post.impressionist_count(:filter=>:session_hash)}" %></span>
+                  </a>
+									<a class="apple icon" style="color:grey"> <i class="fa fa-thumbs-up"></i>
+                    <span><%= post.voters.count %></span>
+                  </a>
+								  <a class="star icon" style="color:grey"> <i class="fa fa-heart"></i>
+                    <span><%= post.comments.count %></span>
+                  </a>
+								</p>
+							</div>
+						</div>
+					</div>
+          <% end %>
+          <% else %>
+              <div class="col-md-8 col-md-offset-2 no-job-data">
+                <h2 style="border-color:white">暂时无人发布，你可以成为第一个发布的人。</h2>
+                <p><%= link_to("立即创建", new_group_post_path(@group), class: "btn btn-lg btn-success") %></p>
+              </div>
+          <% end %>
+          </div>
+				</div>
+			</div>
+			<!--=== 分页区块 ===-->
+			<div class="col-md-10 col-md-offset-1 job-bottom">
+			  <div class="text-center">
+			    <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+			  </div>
+			</div>
 </div>
