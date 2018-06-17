@@ -1,11 +1,12 @@
+<div id="myjob">
 <% if @job_favorites.length > 0 %>
-  <div class="col-md-10 col-md-offset-1 page-title">
+  <div class="col-md-8 col-md-offset-2 page-title">
     <h1><span class="fa fa-gift"></span> 我收藏的职位</h1>
   </div>
-  <div class="col-md-10 col-md-offset-1 job-content">
+  <div class="col-md-8 col-md-offset-2 job-content">
     <div class="main-box">
     <% @job_favorites.each do |job_favorite| %>
-    <div class="col-md-9 col-xs-12 job-box">
+    <div class="col-md-12 col-xs-12 job-box">
       <!--=== 职位信息 ===-->
       <div class="col-md-6 col-xs-12 info">
         <div class="info-top">
@@ -51,3 +52,10 @@
     <p><%= link_to("立即查看工作", jobs_path, class: "btn btn-lg btn-success") %></p>
   </div>
 <% end %>
+</div>
+
+<div class="col-md-10 col-md-offset-1 job-bottom">
+  <div class="text-center">
+    <%= will_paginate @job_favorites, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>

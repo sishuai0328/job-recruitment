@@ -36,7 +36,7 @@
 <div id="groups-list">
 <div class="container-fluid groups-list">
   <div class="container">
-    <div class="row">
+    <div class="row" style="margin-bottom:50px">
       <div class="group col-md-8 col-md-offset-2">
         <p>
         <h1 class="pull-left" style="margin-top:0px">讨论列表</h1>
@@ -49,8 +49,6 @@
       <div class='box1'>
           <a class="pull-left"><%= link_to image_tag(group.avatar.url(:big)), group_path(group), :target => "_blank" %></a>
       </div>
-
-
         <div class="media-body">
           <h4 class="media-heading"><%= link_to(group.title, group_path(group)) %></h4>
           <%= render_group_description(group) %>
@@ -60,14 +58,16 @@
           <a class="star icon" style="color:orange;font-size:18px;"> <i class="fa fa-file"></i> <span style="font-size:15px;color:#999"><%= group.posts.count %></span></a>
         </div>
       </div>
-
       </div>
-
-
-
-
     <% end %>
   </div>
   </div>
 </div>
+</div>
+
+<!--=== 分页区块 ===-->
+<div class="col-md-10 col-md-offset-1 job-bottom">
+  <div class="text-center">
+    <%= will_paginate @groups, renderer: BootstrapPagination::Rails %>
+  </div>
 </div>

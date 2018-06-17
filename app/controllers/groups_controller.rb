@@ -25,7 +25,7 @@ class GroupsController < ApplicationController
     if @group.save
       # 创建之后自动加入
       current_user.join!(@group)
-      redirect_to groups_path
+      redirect_to groups_path, notice: "讨论版块创建成功。"
     else
       render :new
     end

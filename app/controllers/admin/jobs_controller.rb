@@ -72,7 +72,7 @@ class Admin::JobsController < ApplicationController
     if @job.save
       redirect_to admin_jobs_path
     else
-      render :new
+      render :new, notice: '职位创建成功。'
     end
   end
 
@@ -103,7 +103,7 @@ class Admin::JobsController < ApplicationController
     @job = Job.find_by_friendly_id!(params[:id])
     @job.publish!
 
-    redirect_to :back
+    redirect_to :back, notice: '职位已公开。'
   end
 
   def hide
@@ -111,7 +111,7 @@ class Admin::JobsController < ApplicationController
 
     @job.hide!
 
-    redirect_to :back
+    redirect_to :back, notice: '职位已隐藏。'
   end
 
 

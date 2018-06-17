@@ -29,9 +29,9 @@ class JobsController < ApplicationController
       @location_id = Location.find_by(name: @location)
 
       if @location == '所有城市'
-        @jobs = Job.published.recent.paginate(:page => params[:page], :per_page => 10)
+        @jobs = Job.published.recent.paginate(:page => params[:page], :per_page => 5)
       else
-        @jobs = Job.where(:location => @location_id).published.recent.paginate(:page => params[:page], :per_page => 10)
+        @jobs = Job.where(:location => @location_id).published.recent.paginate(:page => params[:page], :per_page => 5)
       end
 
     # 判断是否筛选职位类型 #
@@ -40,24 +40,24 @@ class JobsController < ApplicationController
       @category_id = Category.find_by(name: @category)
 
       if @category == '所有类型'
-        @jobs = Job.published.recent.paginate(:page => params[:page], :per_page => 10)
+        @jobs = Job.published.recent.paginate(:page => params[:page], :per_page => 5)
       else
-        @jobs = Job.where(:category => @category_id).published.recent.paginate(:page => params[:page], :per_page => 10)
+        @jobs = Job.where(:category => @category_id).published.recent.paginate(:page => params[:page], :per_page => 5)
       end
 
     # 判断是否筛选薪水 #
     elsif params[:wage].present?
       @wage = params[:wage]
       if @wage == '5k以下'
-        @jobs = Job.wage1.published.recent.paginate(:page => params[:page], :per_page => 10)
+        @jobs = Job.wage1.published.recent.paginate(:page => params[:page], :per_page => 5)
       elsif @wage == '5~10k'
-        @jobs = Job.wage2.published.recent.paginate(:page => params[:page], :per_page => 10)
+        @jobs = Job.wage2.published.recent.paginate(:page => params[:page], :per_page => 5)
       elsif @wage == '10~15k'
-        @jobs = Job.wage3.published.recent.paginate(:page => params[:page], :per_page => 10)
+        @jobs = Job.wage3.published.recent.paginate(:page => params[:page], :per_page => 5)
       elsif @wage == '15~25k'
-        @jobs = Job.wage4.published.recent.paginate(:page => params[:page], :per_page => 10)
+        @jobs = Job.wage4.published.recent.paginate(:page => params[:page], :per_page => 5)
       else
-        @jobs = Job.wage5.published.recent.paginate(:page => params[:page], :per_page => 10)
+        @jobs = Job.wage5.published.recent.paginate(:page => params[:page], :per_page => 5)
       end
 
     # elsif @jobs = case params[:order]
@@ -71,7 +71,7 @@ class JobsController < ApplicationController
 
     # 预设显示所有公开职位 #
     else
-      @jobs = Job.published.recent.paginate(:page => params[:page], :per_page => 10)
+      @jobs = Job.published.recent.paginate(:page => params[:page], :per_page => 5)
     end
   end
 
