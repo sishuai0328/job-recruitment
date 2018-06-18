@@ -118,7 +118,7 @@ class Admin::JobsController < ApplicationController
   private
 
   def find_job_and_check_permission
-    @job = Job.find(params[:id])
+    @job = Job.find_by_friendly_id!(params[:id])
 
     if @job.user != current_user
       redirect_to root_path, alert: "你没有权限进行此操作。"

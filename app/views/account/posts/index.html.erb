@@ -41,7 +41,9 @@
   <div class="col-md-10 col-md-offset-1">
     <div class="thumbnail">
       <div class="caption" style="font-size:18px">
-        <h3><%= link_to(post.title, group_post_path(post.group, post)) %></h3>
+        <h3><%= link_to(post.title, group_post_path(post.group, post)) %>
+        </h3>
+
         <p style="color:grey;font-size:13px">
           <a class="star icon" style="font-size:20px;color:#616161"> <i class="fa fa-globe"></i></a>
             <span style="font-size:15px;color:#1E88E5"><%= link_to(post.group.title, group_path(post.group, post)) %></span>
@@ -58,6 +60,10 @@
           </a>
           <a class="star icon" style="color:grey"> <i class="fa fa-heart"></i>
             <span><%= post.comments.count %></span>
+          </a>
+          <a>
+            <%= link_to('修改', edit_group_post_path(post.group, post), class: "btn btn-default btn-xs  pull-right") %>
+            <%= link_to('删除', group_post_path(post.group, post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs pull-right") %>
           </a>
         </p>
       </div>

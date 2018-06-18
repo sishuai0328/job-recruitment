@@ -6,7 +6,7 @@ class Account::PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:group_id])
+    @post = Post.find_by_friendly_id!(params[:group_id])
     @group = @post.group
   end
 
