@@ -63,6 +63,7 @@ Rails.application.routes.draw do
       end
     end
   end
+  resources :posts
 
   resources :posts do
     member do
