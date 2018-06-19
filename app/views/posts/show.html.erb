@@ -14,13 +14,20 @@
      <% else %>
       <%= link_to("", upvote_post_path(@post), method: :post, class: "fa fa-thumbs-up fa-3x", style: "color:grey;") %>
     <% end %>
+    <% if @post.voters.length > 0 %>
+    <a style="color:grey;font-size:15px"><%= @post.voters.count %></a>
+    <% end %>
   </span>
   </p>
 </div>
 
 <section class="section comments">
     <div class="container">
+      <% if @post.comments.length > 0 %>
         <h2 class="subtitle is-5" style="text-align:center;border-color:white"><strong><%= @post.comments.count %></strong> 条留言</h2>
+      <% else %>
+        <h2 class="subtitle is-5" style="text-align:center;border-color:white"><strong>暂无留言，赶快发布第一个留言吧</h2>
+      <% end %>
         <%= render @post.comments %>
         <div class="comment-form">
           <br>

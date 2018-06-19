@@ -11,6 +11,12 @@
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
   </head>
 
+  <!-- 提醒自动关闭 -->
+  <script>
+    window.setTimeout(function(){
+    $('[data-dismiss="alert"]').alert('close');
+  },1000);
+  </script>
     <body>
 
         <div class="container-job">
