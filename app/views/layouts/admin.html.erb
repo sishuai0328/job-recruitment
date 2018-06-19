@@ -8,7 +8,11 @@
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
         <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     </head>
-
+    <script>
+      window.setTimeout(function(){
+      $('[data-dismiss="alert"]').alert('close');
+    },1000);
+    </script>
     <body>
 
         <div class="container-fluid">
