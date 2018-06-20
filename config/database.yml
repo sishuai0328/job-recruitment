@@ -23,3 +23,10 @@ test:
 production:
   <<: *default
   database: db/production.sqlite3
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: postgres://://exrgfmfvgdkkup:f12cf856ad63f680a7ba1404ab70d883518361c05a9a115f390522567338780f@ec2-75-101-142-91.compute-1.amazonaws.com:5432/dhprrdv864jvn
+  pool: 5
+  timeout: 5000
