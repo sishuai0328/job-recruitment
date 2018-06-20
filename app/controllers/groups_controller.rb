@@ -53,6 +53,7 @@ class GroupsController < ApplicationController
    @group = Group.find(params[:id])
 
     if !current_user.is_member_of?(@group)
+      # 创建之后自动加入
       current_user.join!(@group)
       flash[:notice] = "加入本讨论版成功！"
     else

@@ -91,6 +91,7 @@ class JobsController < ApplicationController
 
   def search
       if @query_string.present?
+        # search_result = Job.ransack(@search_criteria).result(:distinct => true)
         search_result = Job.joins(:location).ransack(@search_criteria).result(:distinct => true)
         @jobs = search_result.published.paginate(:page => params[:page], :per_page => 5 )
         @suggests = Job.published.random5
@@ -172,6 +173,7 @@ class JobsController < ApplicationController
 
   def validate_search_key
     @query_string = params[:q].gsub(/\\|\'|\/|\?/, "")
+    # 处理params[:q]拿到的资料，把特殊字符拿掉
     if params[:q].present?
       @search_criteria =  {
         title_or_company_or_location_name_cont: @query_string
@@ -179,6 +181,7 @@ class JobsController < ApplicationController
     end
   end
 
+  # 告诉controller我们要找的资料范围
   def search_criteria(query_string)
     { :title_or_company_or_location_name_cont => query_string }
   end
