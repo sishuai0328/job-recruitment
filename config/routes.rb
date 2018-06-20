@@ -42,6 +42,7 @@ Rails.application.routes.draw do
     resources :posts
     resources :resumes
     resources :votes
+    resources :comments
   end
 
   resources :groups do

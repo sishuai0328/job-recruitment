@@ -1,0 +1,51 @@
+<div id="mypost">
+<h1><span class="fa fa-thumbs-up col-md-8 col-md-offset-2"> <strong>我的留言</strong></span> </h1>
+</div>
+<div class="row col-md-10 col-md-offset-1" style="margin-top:20px;">
+  <% if @comments.length > 0 %>
+  <% @comments.each do |comment| %>
+    <div class="box col-md-10 col-md-offset-1">
+      <article class="media">
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong style="color:blue"><%= comment.user.username %>:</strong>
+              <span class="pull-right">
+                <% if current_user && current_user.is_liker_of?(comment) %>
+                  <%= link_to("", unlike_comment_path(comment), method: :post, class: "fa fa-heart fa-1x", style: "color:red;") %>
+                 <% else %>
+                  <%= link_to("", like_comment_path(comment), method: :post, class: "fa fa-heart fa-1x", style: "color:grey;") %>
+                <% end %>
+              <%= comment.likers.count %>
+              </span>
+            </p>
+            <span><%= comment.comment %></span>
+            <span>
+              <% if current_user == comment.user %>
+                <%= link_to '删除', comment_path(comment, comment.post),method: :delete, class: "btn btn-danger btn-xs pull-right", data: { confirm: '确定删除本条留言吗?' } %>
+              <% end %>
+            </span>
+            <p style="font-size:12px;color:gray;margin-top:5px">
+              <%= comment.created_at.strftime('%Y-%m-%d %H:%M:%S') %>
+              <a class="fa fa-globe"><%= link_to(comment.post.group.title, group_path(comment.post.group, comment.post)) %></a>
+              <a class="fa fa-file" style="margin-left:5px"><%= link_to(comment.post.title, group_post_path(comment.post, comment.post.group)) %></a>
+            </p>
+          </div>
+        </div>
+      </article>
+      <hr>
+    </div>
+  <% end %>
+  <% else %>
+      <div class="col-md-8 col-md-offset-2 no-job-data">
+        <h2 style="border-color:white">你还没有发布文章哦。</h2>
+      </div>
+  <% end %>
+  </div>
+
+  <!--=== 分页区块 ===-->
+  <div class="col-md-10 col-md-offset-1 job-bottom">
+    <div class="text-center">
+      <%= will_paginate @comments, renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
