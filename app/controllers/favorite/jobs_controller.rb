@@ -8,7 +8,7 @@ class Favorite::JobsController < ApplicationController
 
   def index
     @user = current_user
-    @job_favorites = JobFavorite.where(:user => @user).order("created_at DESC").paginate(:page => params[:page], :per_page => 1)
+    @job_favorites = JobFavorite.where(:user => @user).order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
   end
 
 end
