@@ -41,6 +41,7 @@ Rails.application.routes.draw do
     end
     resources :posts
     resources :resumes
+    resources :votes
   end
 
   resources :groups do
@@ -63,7 +64,8 @@ Rails.application.routes.draw do
       end
     end
   end
-  resources :posts
+  # resources :posts
+
 
   resources :posts do
     member do

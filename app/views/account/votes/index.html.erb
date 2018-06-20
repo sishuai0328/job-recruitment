@@ -1,0 +1,48 @@
+
+<div id="mypost">
+<h1><span class="fa fa-thumbs-up col-md-8 col-md-offset-2"> <strong>我点赞的文章</strong></span> </h1>
+</div>
+<div class="row col-md-10 col-md-offset-1" style="margin-top:20px;">
+  <% if @votes.length > 0 %>
+  <% @votes.each do |vote| %>
+  <div class="col-md-10 col-md-offset-1">
+    <div class="thumbnail">
+      <div class="caption" style="font-size:18px">
+        <h3><%= link_to(vote.post.title, group_post_path(vote.post, vote.post.group)) %>
+        </h3>
+
+        <p style="color:grey;font-size:13px">
+          <a class="star icon" style="font-size:20px;color:#616161"> <i class="fa fa-globe"></i></a>
+            <span style="font-size:15px;color:#1E88E5"><%= link_to(vote.post.group.title, group_path(vote.post.group)) %></span>
+          作者：<span class="author"><%= vote.post.user.username %></span>
+          时间：<span class="time"><%= vote.post.created_at.strftime('%Y-%m-%d %H:%M:%S')%></span>
+        </p>
+        <p><%= truncate(strip_tags(raw(vote.post.content)),:length=>60) %></p>
+        <p>
+          <a class="heart icon" style="color:grey"> <i class="fa fa-eye"></i>
+            <span><%= "#{vote.post.impressionist_count(:filter=>:session_hash)}" %></span>
+          </a>
+          <a class="apple icon" style="color:grey"> <i class="fa fa-thumbs-up"></i>
+            <span><%= vote.post.voters.count %></span>
+          </a>
+          <a class="star icon" style="color:grey"> <i class="fa fa-heart"></i>
+            <span><%= vote.post.comments.count %></span>
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <% else %>
+      <div class="col-md-8 col-md-offset-2 no-job-data">
+        <h2 style="border-color:white">你还没有发布文章哦。</h2>
+      </div>
+  <% end %>
+  </div>
+
+  <!--=== 分页区块 ===-->
+  <div class="col-md-10 col-md-offset-1 job-bottom">
+    <div class="text-center">
+      <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
