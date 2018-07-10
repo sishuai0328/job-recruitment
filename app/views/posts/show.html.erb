@@ -26,7 +26,7 @@
       <% if @post.comments.length > 0 %>
         <h2 class="subtitle is-5" style="text-align:center;border-color:white"><strong><%= @post.comments.count %></strong> 条留言</h2>
       <% else %>
-        <h2 class="subtitle is-5" style="text-align:center;border-color:white"><strong>暂无留言，赶快发布第一个留言吧</h2>
+        <h2 class="subtitle is-5" style="text-align:center;border-color:white"><strong>暂无留言，赶快发布第一个留言吧</strong></h2>
       <% end %>
         <%= render @post.comments %>
         <div class="comment-form">
